@@ -152,16 +152,67 @@ header.sticky .brand-logo {
   margin-bottom: 1.5rem;
 }
 
-.stats-row {
-  display: flex;
-  gap: 4rem;
-  margin-top: 3rem;
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2.5rem;
+  justify-content: center;
+  align-items: center;
 }
 
-.stat h3 {
+.stat-card {
+  background: white;
+  padding: 2.5rem;
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+  transition: var(--transition);
+  border: 1px solid rgba(0, 0, 0, 0.03);
+}
+
+.stat-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+.stat-icon {
+  width: 64px;
+  height: 64px;
+  background: var(--bg-soft);
+  color: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  margin-bottom: 1.5rem;
+  transition: var(--transition);
+}
+
+.stat-card:hover .stat-icon {
+  background: var(--primary);
+  color: white;
+}
+
+.stat-info h3 {
   font-size: 2.5rem;
   color: var(--primary);
+  margin-bottom: 0.5rem;
+  font-weight: 800;
 }
+
+.stat-info p {
+  color: var(--text-medium);
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
 
 /* Ingredients */
 .section-header {

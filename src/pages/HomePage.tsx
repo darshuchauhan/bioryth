@@ -4,6 +4,8 @@ import documentSupport from '../assets/document-support.jpg';
 import quickDelivery from '../assets/quick-delivery.jpg';
 import transparentPricing from '../assets/transparent-pricing.jpg';
 import pharma from '../assets/pharmaceutical.jpg';
+import Counter from '../components/Counter';
+
 const HomePage: React.FC = () => {
     return (
         <main>
@@ -57,7 +59,7 @@ const HomePage: React.FC = () => {
                                     <Users size={32} />
                                 </div>
                                 <div className="i-text">
-                                    <h3>150+ Manufactures</h3>
+                                    <h3><Counter end={150} suffix="+" /> Manufacturers</h3>
                                     <p>Trusted By</p>
                                 </div>
                             </div>
@@ -66,7 +68,7 @@ const HomePage: React.FC = () => {
                                     <Leaf size={32} />
                                 </div>
                                 <div className="i-text">
-                                    <h3>500+</h3>
+                                    <h3><Counter end={500} suffix="+" /></h3>
                                     <p>High-Quality Ingredients</p>
                                 </div>
                             </div>
@@ -75,7 +77,7 @@ const HomePage: React.FC = () => {
                                     <Globe size={32} />
                                 </div>
                                 <div className="i-text">
-                                    <h3>12+</h3>
+                                    <h3><Counter end={12} suffix="+" /></h3>
                                     <p>Global Sourcing Countries</p>
                                 </div>
                             </div>
@@ -83,6 +85,7 @@ const HomePage: React.FC = () => {
                     </div>
                 </div>
             </section>
+
 
             <section id="why-choose-us" className="why-us section">
                 <div className="container">

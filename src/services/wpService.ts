@@ -1,4 +1,4 @@
-const WP_API_URL = 'https://public-api.wordpress.com/wp/v2/sites/discover.wordpress.com';
+const WP_API_URL = 'https://blog.bioryth.com/wp-json/wp/v2';
 
 export interface WPPost {
     id: number;

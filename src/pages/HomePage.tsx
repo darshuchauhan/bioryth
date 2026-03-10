@@ -19,7 +19,7 @@ const HomePage: React.FC = () => {
                         playsInline
                         poster="https://images.unsplash.com/photo-1579165466541-71e2247fb5c5?auto=format&fit=crop&q=80&w=2000"
                     >
-                        <source src="https://www.pexels.com/download/video/8512875" type="video/mp4" />
+                        <source src="https://videos.pexels.com/video-files/8512875/8512875-hd_1920_1080_30fps.mp4" type="video/mp4" />
                         Your browser does not support the video tag.
                     </video>
                 </div>

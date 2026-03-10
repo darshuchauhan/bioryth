@@ -1,8 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { Calendar, ChevronLeft, Loader2 } from 'lucide-react';
+import { Calendar, ChevronLeft, Loader2, List } from 'lucide-react';
 import { fetchPostById } from '../services/wpService';
 import type { WPPost } from '../services/wpService';
+
+interface TOCItem {
+    id: string;
+    text: string;
+    level: number;
+}
 
 const BlogDetailPage: React.FC = () => {
     const { id } = useParams<{ id: string }>();
@@ -19,6 +25,42 @@ const BlogDetailPage: React.FC = () => {
         };
         getPost();
     }, [id]);
+
+    // Process content to add IDs to headings and extract TOC items
+    const processed = useMemo(() => {
+        if (!post) return { content: '', toc: [] as TOCItem[] };
+
+        const toc: TOCItem[] = [];
+        let content = post.content.rendered;
+
+        // Simple regex to find h2 and h3
+        const headingRegex = /<h([23])(.*?)>(.*?)<\/h\1>/gi;
+        let modifiedContent = content;
+
+        // Reset regex state
+        headingRegex.lastIndex = 0;
+
+        const matches = [...content.matchAll(headingRegex)];
+
+        matches.forEach((match, index) => {
+            const level = parseInt(match[1]);
+            const rawText = match[3].replace(/<[^>]*>?/gm, ''); // Strip tags from text
+            const id = `heading-${index}`;
+
+            toc.push({ id, text: rawText, level });
+
+            // We don't replace here yet because indices would shift
+        });
+
+        // Now replace in content to add IDs
+        let idCounter = 0;
+        modifiedContent = content.replace(/<h([23])(.*?)>(.*?)<\/h\1>/gi, (_match, level, attrs, text) => {
+            const id = `heading-${idCounter++}`;
+            return `<h${level} id="${id}" ${attrs}>${text}</h${level}>`;
+        });
+
+        return { content: modifiedContent, toc };
+    }, [post]);
 
     if (loading) {
         return (
@@ -55,7 +97,23 @@ const BlogDetailPage: React.FC = () => {
 
             <article className="post-content section">
                 <div className="container-small">
-                    <div className="content-inner reveal" dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
+                    {processed.toc.length > 0 && (
+                        <div className="toc-container reveal">
+                            <div className="toc-header">
+                                <List size={20} />
+                                <h3>Table of Contents</h3>
+                            </div>
+                            <ul className="toc-list">
+                                {processed.toc.map((item) => (
+                                    <li key={item.id} className={`toc-level-${item.level}`}>
+                                        <a href={`#${item.id}`}>{item.text}</a>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    )}
+
+                    <div className="content-inner reveal" dangerouslySetInnerHTML={{ __html: processed.content }} />
 
                     <div className="post-footer reveal">
                         <hr />

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Beaker, BookOpen, Microscope } from 'lucide-react';
+import science from '../assets/sciencelab.jpg';
 
 const SciencePage: React.FC = () => {
     return (
@@ -49,7 +50,7 @@ const SciencePage: React.FC = () => {
                             <p>Our innovation team works tirelessly to discover new health impacts, ensuring Bioryth remains at the forefront of the nutraceutical industry.</p>
                         </div>
                         <div className="about-image reveal">
-                            <img src="https://images.unsplash.com/photo-1532187875605-2fe35951856c?auto=format&fit=crop&q=80&w=1000" alt="Science Lab" className="rounded-img" />
+                            <img src={science} alt="Science Lab" className="rounded-img" />
                         </div>
                     </div>
                 </div>

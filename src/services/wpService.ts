@@ -2,6 +2,7 @@ const WP_API_URL = 'https://blog.bioryth.com/wp-json/wp/v2';
 
 export interface WPPost {
     id: number;
+    slug: string;
     title: { rendered: string };
     content: { rendered: string };
     excerpt: { rendered: string };
@@ -32,6 +33,18 @@ export const fetchPostById = async (id: string): Promise<WPPost | null> => {
         return await response.json();
     } catch (error) {
         console.error('Error fetching WP post:', error);
+        return null;
+    }
+};
+
+export const fetchPostBySlug = async (slug: string): Promise<WPPost | null> => {
+    try {
+        const response = await fetch(`${WP_API_URL}/posts?slug=${slug}&_embed`);
+        if (!response.ok) throw new Error('Failed to fetch post by slug');
+        const posts = await response.json();
+        return posts.length > 0 ? posts[0] : null;
+    } catch (error) {
+        console.error('Error fetching WP post by slug:', error);
         return null;
     }
 };

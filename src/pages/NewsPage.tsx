@@ -50,7 +50,7 @@ const NewsPage: React.FC = () => {
                                         </div>
                                         <h3 dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
                                         <p dangerouslySetInnerHTML={{ __html: post.excerpt.rendered.substring(0, 120) + '...' }} />
-                                        <Link to={`/news/${post.id}`} className="btn-text">
+                                        <Link to={`/news/${post.slug}`} className="btn-text">
                                             Read More <ChevronRight size={16} />
                                         </Link>
                                     </div>

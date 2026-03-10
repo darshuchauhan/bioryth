@@ -406,14 +406,27 @@ header.sticky .nav-links a:hover {
   padding-top: 100px;
 }
 
-.back-link {
+.blog-detail-page .detail-hero h1 {
+  font-size: 3.5rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  max-width: 1000px;
+}
+
+.blog-detail-page .detail-hero .post-meta {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  color: white;
-  margin-bottom: 2rem;
+  gap: 0.8rem;
   font-weight: 600;
-  opacity: 0.8;
+  font-size: 1.1rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.detail-hero .container {
+  position: relative;
+  z-index: 2;
 }
 
 .back-link:hover {

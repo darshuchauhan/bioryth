@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Calendar, ChevronLeft, Loader2, List } from 'lucide-react';
-import { fetchPostById } from '../services/wpService';
+import { fetchPostBySlug } from '../services/wpService';
 import type { WPPost } from '../services/wpService';
 
 interface TOCItem {
@@ -11,20 +11,20 @@ interface TOCItem {
 }
 
 const BlogDetailPage: React.FC = () => {
-    const { id } = useParams<{ id: string }>();
+    const { slug } = useParams<{ slug: string }>();
     const [post, setPost] = useState<WPPost | null>(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const getPost = async () => {
-            if (id) {
-                const data = await fetchPostById(id);
+            if (slug) {
+                const data = await fetchPostBySlug(slug);
                 setPost(data);
             }
             setLoading(false);
         };
         getPost();
-    }, [id]);
+    }, [slug]);
 
     // Process content to add IDs to headings and extract TOC items
     const processed = useMemo(() => {

@@ -1,47 +1,66 @@
+import React from 'react';
 import { Leaf, Globe, Users } from 'lucide-react';
-import lab from '../assets/lab.jpg';
+import pharma from '../assets/pharmaceutical.jpg';
 import documentSupport from '../assets/document-support.jpg';
 import quickDelivery from '../assets/quick-delivery.jpg';
 import transparentPricing from '../assets/transparent-pricing.jpg';
-import pharma from '../assets/pharmaceutical.jpg';
 import Counter from '../components/Counter';
 
 const HomePage: React.FC = () => {
     return (
         <main>
             <section id="hero" className="hero">
+                <div className="hero-video-container">
+                    <video
+                        className="hero-video"
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        poster="https://images.unsplash.com/photo-1579165466541-71e2247fb5c5?auto=format&fit=crop&q=80&w=2000"
+                    >
+                        <source src="https://www.pexels.com/download/video/8512875" type="video/mp4" />
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
                 <div className="hero-overlay"></div>
                 <div className="container hero-content">
+                    <div className="hero-badge reveal">Purity Powered by Science</div>
                     <h1 className="reveal">
-                        India's Leading <span className="gradient-text">Nutraceutical Ingredients</span> Supplier
+                        India's Premier <span className="gradient-text">Nutraceutical Ingredients</span> Partner
                     </h1>
                     <p className="reveal">
-                        Purity by Science. Driven by Nature. We deliver world-class raw materials
-                        to empower health and wellness brands globally.
+                        Elevating health standards globally since 2012. We supply certified, high-performance raw materials for Nutraceutical, Food, Pharma, and Agriculture industries.
                     </p>
                     <div className="hero-btns reveal">
-                        <a href="#ingredients" className="btn btn-secondary">Our Catalog</a>
-                        <a href="/contact" className="btn btn-outline connect-btn">Connect With Us</a>
+                        <a href="/products" className="btn btn-primary">Explore Products</a>
+                        <a href="/contact" className="btn btn-outline">Request Sample</a>
                     </div>
                 </div>
             </section>
 
-            <section id="about-preview" className="about section">
+            <section id="services" className="services section bg-soft">
                 <div className="container">
-                    <div className="about-grid">
-                        <div className="about-image reveal">
-                            <img
-                                src={lab}
-                                alt="Scientist in lab"
-                            />
+                    <div className="section-header reveal">
+                        <span className="label">Our Expertise</span>
+                        <h2>Core Business Services</h2>
+                        <p>Comprehensive solutions from concept to creation, ensuring your products exceed market expectations.</p>
+                    </div>
+                    <div className="services-grid">
+                        <div className="service-card reveal">
+                            <div className="service-icon"><Leaf size={32} /></div>
+                            <h3>Product Development & Concept Creation</h3>
+                            <p>Innovative formulations tailored to emerging market trends and specific health goals.</p>
                         </div>
-                        <div className="about-text reveal">
-                            <span className="label">The Bioryth Advantage</span>
-                            <h2>Elevating Nutritional Standards since 2012</h2>
-                            <p>
-                                Bioryth Enterprise proudly serves four major industries — Nutraceutical, Food, Pharmaceutical, and Agriculture — by supplying high-quality raw materials essential for product formulation and large-scale manufacturing. As a trusted importer, exporter, and trader, we specialize in delivering premium-grade ingredients to clients across India and global markets. Our strong international sourcing network ensures consistent purity, certified safety standards, and competitive pricing, enabling brands and manufacturers to develop world-class nutraceutical, food, pharma, and agricultural products.
-                            </p>
-                            <a href="/about" className="btn btn-primary">Read Our Story</a>
+                        <div className="service-card reveal">
+                            <div className="service-icon"><Users size={32} /></div>
+                            <h3>Nutrient Premix + Market Ready Blend</h3>
+                            <p>Customized blends and premixes designed for seamless integration into your production line.</p>
+                        </div>
+                        <div className="service-card reveal">
+                            <div className="service-icon"><Globe size={32} /></div>
+                            <h3>Premium Ingredients + Health Supplements</h3>
+                            <p>Direct access to a world-class portfolio of lab-tested ingredients and supplement solutions.</p>
                         </div>
                     </div>
                 </div>
@@ -137,57 +156,16 @@ const HomePage: React.FC = () => {
                         <div className="sourcing-text reveal">
                             <span className="label">Our Global Network</span>
                             <h2>Our Sourcing Strength</h2>
-                            <p>Our sourcing strength is built on a globally integrated network of certified manufacturers, advanced quality-verification protocols, and deep technical expertise across nutraceutical, food, pharmaceutical, and agriculture raw materials.</p>
-                            <a href="/about" className="btn btn-outline">Learn More</a>
+                            <p>We have built robust partnerships with manufacturers and suppliers from key regions, ensuring a steady supply of innovative and high-purity ingredients.</p>
+                            <ul className="sourcing-list">
+                                <li><strong>Domestic Presence:</strong> Extensive network across India for regional distribution.</li>
+                                <li><strong>Global Imports:</strong> Sourcing from Europe, USA, China, and Southeast Asia.</li>
+                                <li><strong>Direct Partnerships:</strong> Collaborative relationships with audited and certified production facilities.</li>
+                            </ul>
+                            <a href="/contact" className="btn btn-primary mt-2">Partner With Us</a>
                         </div>
-                        <div className="sourcing-stats reveal">
-                            <div className="strength-card">
-                                <h3>Supply Excellence</h3>
-                                <p>Where trusted global sourcing, rigorous quality assurance, and a strong partner network come together to deliver consistent, safe, and premium raw materials.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <section id="ingredients" className="ingredients section">
-                <div className="container">
-                    <div className="section-header reveal">
-                        <span className="label">Product Catalog</span>
-                        <h2>Expertly Sourced Ingredients</h2>
-                        <p>Browse our core categories of premium raw materials catering to diverse industries.</p>
-                    </div>
-                    <div className="ingredients-grid">
-                        {[
-                            { title: 'Nutraceuticals', desc: 'Amino acids, vitamins, and minerals for health supplements.', img: 'https://images.unsplash.com/photo-1576086213369-97a306d36557?auto=format&fit=crop&q=80&w=800' },
-                            { title: 'Food & Beverage', desc: 'Specialty ingredients for functional foods and beverages.', img: 'https://images.unsplash.com/photo-1490818387583-1baba5e638af?auto=format&fit=crop&q=80&w=800' },
-                            { title: 'Pharmaceutical', desc: 'API and excipients meeting strict BP/USP/EP standards.', img: pharma },
-                            { title: 'Agriculture', desc: 'High-quality compounds for advanced agricultural formulations.', img: 'https://images.unsplash.com/photo-1625246333195-78d9c38ad449?auto=format&fit=crop&q=80&w=800' }
-                        ].map((item, idx) => (
-                            <div key={idx} className="card reveal">
-                                <div className="card-img">
-                                    <img src={item.img} alt={item.title} />
-                                </div>
-                                <div className="card-body">
-                                    <h3>{item.title}</h3>
-                                    <p>{item.desc}</p>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            <section id="quality" className="quality section bg-primary">
-                <div className="container reveal">
-                    <div className="quality-content">
-                        <h2>Safety, Compliance & Quality</h2>
-                        <p>We adhere to the strictest global regulatory standards including FSSAI, ISO 22000, HACCP, and GMP.</p>
-                        <div className="cert-strip">
-                            <img src="/FSSAI_logo.png" alt="FSSAI Certified" className="cert-logo" />
-                            <img src="/iso22000.png" alt="ISO 22000 Certified" className="cert-logo" />
-                            <img src="/haccp.png" alt="HACCP Certified" className="cert-logo" />
-                            <img src="/gmp.jpg" alt="WHO-GMP Certified" className="cert-logo" />
+                        <div className="sourcing-image reveal">
+                            <img src={pharma} alt="Pharmaceutical sourcing" />
                         </div>
                     </div>
                 </div>

@@ -14,10 +14,9 @@ const ScrollToTop = () => {
   return null;
 };
 
-import { Linkedin, Twitter, Instagram, Facebook, Send, Mail, Phone, MapPin } from 'lucide-react';
+import { Linkedin, Instagram, Facebook, Send, MessageCircle } from 'lucide-react';
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  // ... existing hooks ...
   useEffect(() => {
     const handleScroll = () => {
       const reveals = document.querySelectorAll('.reveal');
@@ -51,22 +50,33 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     <div className="app-wrapper">
       <header>
         <nav className="container">
-          <div className="logo">
-            <Link to="/">
+          <div className="logo-group">
+            <Link to="/" className="logo">
               <img src="/icon.png" alt="Bioryth Enterprise Logo" className="brand-logo" />
             </Link>
+            <div className="header-socials">
+              <a href="#" aria-label="Facebook"><Facebook size={18} /></a>
+              <a href="#" aria-label="Instagram"><Instagram size={18} /></a>
+              <a href="#" aria-label="LinkedIn"><Linkedin size={18} /></a>
+            </div>
           </div>
           <ul className="nav-links">
             <li><Link to="/">Home</Link></li>
             <li><Link to="/about">About</Link></li>
             <li><Link to="/products">Products</Link></li>
+            <li><Link to="/science">Story / Science</Link></li>
+            <li><Link to="/news">Industry News</Link></li>
             <li><Link to="/contact">Contact</Link></li>
-            <li><Link to="/contact" className="btn btn-primary nav-btn text-white">Inquire Now</Link></li>
+            <li><Link to="/contact" className="btn btn-primary nav-btn text-white">Request Sample</Link></li>
           </ul>
         </nav>
       </header>
 
       {children}
+
+      <a href="https://wa.me/919104133333" className="whatsapp-float" target="_blank" rel="noopener noreferrer">
+        <MessageCircle size={30} />
+      </a>
 
       <footer className="footer section">
         <div className="container">
@@ -79,10 +89,9 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                 High-performance nutraceutical ingredients. Purity by science, driven by nature since 2012.
               </p>
               <div className="social-links">
-                <a href="#" aria-label="LinkedIn"><Linkedin size={20} /></a>
-                <a href="#" aria-label="Twitter"><Twitter size={20} /></a>
-                <a href="#" aria-label="Instagram"><Instagram size={20} /></a>
                 <a href="#" aria-label="Facebook"><Facebook size={20} /></a>
+                <a href="#" aria-label="Instagram"><Instagram size={20} /></a>
+                <a href="#" aria-label="LinkedIn"><Linkedin size={20} /></a>
               </div>
             </div>
 
@@ -92,24 +101,26 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="/about">About Us</Link></li>
                 <li><Link to="/products">Products</Link></li>
-                <li><Link to="/contact">Contact</Link></li>
+                <li><Link to="/science">Story / Science</Link></li>
+                <li><Link to="/news">Blog / News</Link></li>
+                <li><Link to="/contact">Contact Us</Link></li>
               </ul>
             </div>
 
             <div className="footer-col">
-              <h4>Contact Us</h4>
-              <ul className="footer-contact">
-                <li><MapPin size={18} /> Surat, Gujarat, India</li>
-                <li><Mail size={18} /> info@biorythenterprise.com</li>
-                <li><Phone size={18} /> +91 91041 33333</li>
+              <h4>Support</h4>
+              <ul className="footer-links">
+                <li><Link to="/contact">Request Sample</Link></li>
+                <li><a href="https://wa.me/919104133333">WhatsApp Chat</a></li>
+                <li><Link to="/contact">Inquiry Form</Link></li>
               </ul>
             </div>
 
             <div className="footer-col col-newsletter">
-              <h4>Subscribe</h4>
-              <p>Get the latest updates on new ingredients and industry news.</p>
+              <h4>Newsletter</h4>
+              <p>Stay updated with our latest ingredient launches and industry trends.</p>
               <form className="newsletter-form" onSubmit={(e) => e.preventDefault()}>
-                <input type="email" placeholder="Your Email" required />
+                <input type="email" placeholder="Email Address" required />
                 <button type="submit" className="btn-icon">
                   <Send size={20} />
                 </button>
@@ -125,6 +136,11 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   );
 };
 
+import SciencePage from './pages/SciencePage';
+import NewsPage from './pages/NewsPage';
+
+import BlogDetailPage from './pages/BlogDetailPage';
+
 const App: React.FC = () => {
   return (
     <Router>
@@ -135,6 +151,9 @@ const App: React.FC = () => {
           <Route path="/about" element={<AboutPage />} />
           <Route path="/products" element={<ProductsPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/science" element={<SciencePage />} />
+          <Route path="/news" element={<NewsPage />} />
+          <Route path="/news/:id" element={<BlogDetailPage />} />
         </Routes>
       </Layout>
     </Router>

@@ -12,31 +12,39 @@ interface Category {
 const categories: Category[] = [
     {
         id: 'longevity',
-        name: 'LONGEVITY & HEALTHY AGING SOLUTIONS',
+        name: 'HEALTHY AGING + LONGEVITY',
         color: '#8B5CF6', // Violet
         products: [
             'Apigenin', 'Calcium Alpha-Ketoglutarate (Ca-AKG)', 'Ergothioneine', 'Fisetin', 'NAD+', 'NMN', 'NMN Uthever®', 'PQQ', 'Pterostilbene', 'Quercetin 98%', 'Red Wine Extract', 'Resveratrol', 'Spermidine 3HCL', 'Trigonelline', 'Urolithin A'
         ]
     },
     {
-        id: 'beauty',
-        name: 'BEAUTY, SKIN & COLLAGEN SCIENCE',
+        id: 'collagen',
+        name: 'COLLAGEN & BEAUTY SCIENCE',
         color: '#EC4899', // Pink
         products: [
             'Astaxanthin', 'Collagen Peptide (Bovine / Marine / Chicken)', 'Collagen Tripeptide', 'Collagen Type V', 'Egg Shell Membrane', 'Grapeseed Extract', 'Hyaluronic Acid', 'L-Glutathione', 'S-Acetyl Glutathione', 'Saffron Extract', 'Sodium Hyaluronate', 'Veg Collagen'
         ]
     },
     {
+        id: 'heart',
+        name: 'HEART HEALTH & VITALITY',
+        color: '#EF4444', // Red
+        products: [
+            'Coenzyme Q10', 'Omega-3', 'Rutin', 'DHA-10%', 'Astaxanthin', 'Resveratrol'
+        ]
+    },
+    {
         id: 'cognitive',
-        name: 'CONGNITIVE PERFORMANCE & BRAIN VITALITY',
+        name: 'COGNITIVE PERFORMANCE & BRAIN',
         color: '#3B82F6', // Blue
         products: [
-            'Ashwagandha', '5-HTP', 'Agmatine Sulfate', 'Alpha GPC', 'Coenzyme Q10', 'DHA-10%', 'L-Theanine', 'Magnesium 7 Salt Complex', 'Omega-3', 'Rutin', 'SAMe', 'Ginkgo Biloba Extract'
+            'Ashwagandha', '5-HTP', 'Agmatine Sulfate', 'Alpha GPC', 'L-Theanine', 'Magnesium 7 Salt Complex', 'SAMe', 'Ginkgo Biloba Extract'
         ]
     },
     {
         id: 'metabolic',
-        name: 'METABOLIC & WEGIHT MANAGEMENT',
+        name: 'METABOLIC & WEIGHT',
         color: '#10B981', // Emerald
         products: [
             'Alpha Lipoic Acid', 'Apple Cider Vinegar', 'Beta-Sitosterol', 'D-Chiro Inositol', 'D-Mannose', 'Fiber Complex', 'Inositol', 'Matcha', 'Myo Inositol', 'White Kidney Bean'
@@ -44,50 +52,26 @@ const categories: Category[] = [
     },
     {
         id: 'vitamin',
-        name: 'VITAMIN',
+        name: 'VITAMINS & ESSENTIALS',
         color: '#F59E0B', // Amber
         products: [
-            'Vitamin B12 (Methylcobalamin)', 'Vitamin C (Ascorbic Acid)', 'Vitamin D3 (Cholecalciferol)', 'Vitamin E Acetate Oil', 'Vitamin E Alpha Tocopheryl', 'Vitamin K2', 'L-5MTHF', 'Beta Carotene', 'Citrus Bioflavonoids', 'Lutein Ester', 'Lycopene', 'Milk Thistle', 'Mixed Carotenoids', 'Moringa', 'Mushroom Extract', 'Piperine', 'Spirulina', 'Yeast Beta Glucan'
-        ]
-    },
-    {
-        id: 'defense',
-        name: 'CELLULAR DEFENSE & DETOXIFICATION',
-        color: '#EF4444', // Red
-        products: [
-            'Calcium HMB', 'Chondroitin', 'Coral Calcium', 'Glucosamine', 'PEA (Palmitoylethanolamide)', 'Undenatured Collagen Type II'
-        ]
-    },
-    {
-        id: 'bone',
-        name: 'BONE, JOINT & STRUCTURAL HEALTH',
-        color: '#6B7280', // Gray
-        products: [
-            'Calcium HMB', 'Chondroitin', 'Glucosamine', 'Undenatured Collagen Type II' // Based on user request overlap/context
+            'Vitamin B12 (Methylcobalamin)', 'Vitamin C (Ascorbic Acid)', 'Vitamin D3 (Cholecalciferol)', 'Vitamin E Acetate', 'Vitamin K2', 'L-5MTHF', 'Beta Carotene', 'Lutein Ester', 'Lycopene', 'Milk Thistle', 'Piperine', 'Spirulina'
         ]
     },
     {
         id: 'amino',
-        name: 'AMINO ACID',
+        name: 'AMINO ACIDS',
         color: '#84CC16', // Lime
         products: [
             'L-Alanine', 'L-Taurine', 'LCLT', 'N-Acetyl L-Cysteine'
         ]
     },
     {
-        id: 'hormonal',
-        name: 'HORMONAL & VITALITY SUPPORT',
-        color: '#06B6D4', // Cyan
+        id: 'structural',
+        name: 'BONE, JOINT & STRUCTURAL',
+        color: '#6B7280', // Gray
         products: [
-            'Cranberry Extract', 'Daidzein', 'Genistein', 'Shilajit'
-        ]
-    },
-    {
-        id: 'protein',
-        name: 'ADVANCED PROTEIN & FUNCTIONAL NUTRITION',
-        color: '#F97316', // Orange
-        products: [
-            'Egg White Peptide', 'Pea Protein', 'Soya Protein', 'Yeast Protein'
+            'Calcium HMB', 'Chondroitin', 'Glucosamine', 'Undenatured Collagen Type II', 'Coral Calcium'
         ]
     }
 ];

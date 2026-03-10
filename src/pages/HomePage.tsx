@@ -18,8 +18,8 @@ const HomePage: React.FC = () => {
                         loop
                         playsInline
                         poster="https://images.unsplash.com/photo-1579165466541-71e2247fb5c5?auto=format&fit=crop&q=80&w=2000"
+                        src="https://cdn.pixabay.com/video/2025/03/04/262464_large.mp4"
                     >
-                        <source src="https://videos.pexels.com/video-files/8512875/8512875-hd_1920_1080_30fps.mp4" type="video/mp4" />
                         Your browser does not support the video tag.
                     </video>
                 </div>
@@ -34,7 +34,7 @@ const HomePage: React.FC = () => {
                     </p>
                     <div className="hero-btns reveal">
                         <a href="/products" className="btn btn-primary">Explore Products</a>
-                        <a href="/contact" className="btn btn-outline">Request Sample</a>
+                        <a href="/contact" className="btn btn-secondary ">Request Sample</a>
                     </div>
                 </div>
             </section>

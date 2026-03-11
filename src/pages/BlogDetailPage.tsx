@@ -113,7 +113,7 @@ const BlogDetailPage: React.FC = () => {
                         </div>
                     )}
 
-                    <div className="content-inner reveal" dangerouslySetInnerHTML={{ __html: processed.content }} />
+                    <div className="generic-content-render reveal" dangerouslySetInnerHTML={{ __html: processed.content }} />
 
                     <div className="post-footer reveal">
                         <hr />

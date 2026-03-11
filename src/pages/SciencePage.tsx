@@ -26,6 +26,9 @@ const SciencePage: React.FC = () => {
         getSciencePosts();
     }, []);
 
+    const featuredPost = posts[0];
+    const otherPosts = posts.slice(1);
+
     return (
         <div className="science-page">
             <section className="page-hero bg-primary">
@@ -65,44 +68,74 @@ const SciencePage: React.FC = () => {
 
             <section className="science-story-section section bg-soft">
                 <div className="container">
-                    <div className="section-header reveal">
-                        <span className="label">The Journey</span>
-                        <h2>Science Stories & Innovation</h2>
-                        <p>Discover the research and origins behind our premium ingredients.</p>
-                    </div>
-
                     {loading ? (
                         <div className="loading-state">
                             <Loader2 className="animate-spin" size={40} />
                             <p>Loading science stories...</p>
                         </div>
                     ) : (
-                        <div className="science-posts-grid">
-                            {posts.length > 0 ? (
-                                posts.map((post) => (
-                                    <div key={post.id} className="science-post-card reveal">
-                                        <div className="post-image">
-                                            <img
-                                                src={post._embedded?.['wp:featuredmedia']?.[0]?.source_url || science}
-                                                alt={post.title.rendered}
-                                            />
-                                        </div>
-                                        <div className="post-content">
-                                            <div className="post-meta">
-                                                <Calendar size={14} /> {new Date(post.date).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
-                                            </div>
-                                            <h3 dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
-                                            <div
-                                                className="post-excerpt"
-                                                dangerouslySetInnerHTML={{ __html: post.excerpt.rendered.substring(0, 150) + '...' }}
-                                            />
-                                            <Link to={`/news/${post.slug}`} className="btn-text">
-                                                Read Story <ChevronRight size={16} />
-                                            </Link>
-                                        </div>
+                        <>
+                            {featuredPost ? (
+                                <div className="science-featured-story reveal">
+                                    <div className="featured-image-box">
+                                        <img
+                                            src={featuredPost._embedded?.['wp:featuredmedia']?.[0]?.source_url || science}
+                                            alt={featuredPost.title.rendered}
+                                        />
                                     </div>
-                                ))
+                                    <div className="featured-content-box">
+                                        <span className="label">Featured Story</span>
+                                        <h2 dangerouslySetInnerHTML={{ __html: featuredPost.title.rendered }} />
+                                        <div className="post-meta mb-2">
+                                            <Calendar size={14} /> {new Date(featuredPost.date).toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' })}
+                                        </div>
+                                        <div
+                                            className="generic-content-render"
+                                            dangerouslySetInnerHTML={{ __html: featuredPost.content.rendered }}
+                                        />
+                                    </div>
+                                </div>
                             ) : (
+                                <div className="section-header reveal">
+                                    <span className="label">The Journey</span>
+                                    <h2>Science Stories & Innovation</h2>
+                                    <p>Discover the research and origins behind our premium ingredients.</p>
+                                </div>
+                            )}
+
+                            {otherPosts.length > 0 ? (
+                                <>
+                                    <div className="section-header reveal mt-4 text-center">
+                                        <h2>More Science Insights</h2>
+                                        <p>Expand your knowledge with our latest research updates.</p>
+                                    </div>
+                                    <div className="science-posts-grid">
+                                        {otherPosts.map((post) => (
+                                            <div key={post.id} className="science-post-card reveal">
+                                                <div className="post-image">
+                                                    <img
+                                                        src={post._embedded?.['wp:featuredmedia']?.[0]?.source_url || science}
+                                                        alt={post.title.rendered}
+                                                    />
+                                                </div>
+                                                <div className="post-content">
+                                                    <div className="post-meta">
+                                                        <Calendar size={14} /> {new Date(post.date).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
+                                                    </div>
+                                                    <h3 dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
+                                                    <div
+                                                        className="post-excerpt"
+                                                        dangerouslySetInnerHTML={{ __html: post.excerpt.rendered.substring(0, 150) + '...' }}
+                                                    />
+                                                    <Link to={`/news/${post.slug}`} className="btn-text">
+                                                        Read Story <ChevronRight size={16} />
+                                                    </Link>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </>
+                            ) : !featuredPost && (
                                 <div className="about-grid">
                                     <div className="about-text reveal">
                                         <span className="label">The Journey</span>
@@ -115,7 +148,7 @@ const SciencePage: React.FC = () => {
                                     </div>
                                 </div>
                             )}
-                        </div>
+                        </>
                     )}
                 </div>
             </section>

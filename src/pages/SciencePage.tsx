@@ -1,8 +1,31 @@
-import React from 'react';
-import { Beaker, BookOpen, Microscope } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { Beaker, BookOpen, Microscope, Calendar, ChevronRight, Loader2 } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { fetchCategoryBySlug, fetchPostsByCategory } from '../services/wpService';
+import type { WPPost } from '../services/wpService';
 import science from '../assets/sciencelab.jpg';
 
 const SciencePage: React.FC = () => {
+    const [posts, setPosts] = useState<WPPost[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const getSciencePosts = async () => {
+            try {
+                const categoryId = await fetchCategoryBySlug('science');
+                if (categoryId) {
+                    const data = await fetchPostsByCategory(categoryId);
+                    setPosts(data);
+                }
+            } catch (error) {
+                console.error('Error loading science posts:', error);
+            } finally {
+                setLoading(false);
+            }
+        };
+        getSciencePosts();
+    }, []);
+
     return (
         <div className="science-page">
             <section className="page-hero bg-primary">
@@ -40,19 +63,60 @@ const SciencePage: React.FC = () => {
                 </div>
             </section>
 
-            <section className="story-section section bg-soft">
+            <section className="science-story-section section bg-soft">
                 <div className="container">
-                    <div className="about-grid">
-                        <div className="about-text reveal">
-                            <span className="label">The Journey</span>
-                            <h2>Ingredient Origins & Innovation</h2>
-                            <p>From ethical sourcing in diverse global regions to advanced extraction processes, we ensure every ingredient tells a story of quality and transparency.</p>
-                            <p>Our innovation team works tirelessly to discover new health impacts, ensuring Bioryth remains at the forefront of the nutraceutical industry.</p>
-                        </div>
-                        <div className="about-image reveal">
-                            <img src={science} alt="Science Lab" className="rounded-img" />
-                        </div>
+                    <div className="section-header reveal">
+                        <span className="label">The Journey</span>
+                        <h2>Science Stories & Innovation</h2>
+                        <p>Discover the research and origins behind our premium ingredients.</p>
                     </div>
+
+                    {loading ? (
+                        <div className="loading-state">
+                            <Loader2 className="animate-spin" size={40} />
+                            <p>Loading science stories...</p>
+                        </div>
+                    ) : (
+                        <div className="science-posts-grid">
+                            {posts.length > 0 ? (
+                                posts.map((post) => (
+                                    <div key={post.id} className="science-post-card reveal">
+                                        <div className="post-image">
+                                            <img
+                                                src={post._embedded?.['wp:featuredmedia']?.[0]?.source_url || science}
+                                                alt={post.title.rendered}
+                                            />
+                                        </div>
+                                        <div className="post-content">
+                                            <div className="post-meta">
+                                                <Calendar size={14} /> {new Date(post.date).toLocaleDateString('en-US', { month: 'long', year: 'numeric' })}
+                                            </div>
+                                            <h3 dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
+                                            <div
+                                                className="post-excerpt"
+                                                dangerouslySetInnerHTML={{ __html: post.excerpt.rendered.substring(0, 150) + '...' }}
+                                            />
+                                            <Link to={`/news/${post.slug}`} className="btn-text">
+                                                Read Story <ChevronRight size={16} />
+                                            </Link>
+                                        </div>
+                                    </div>
+                                ))
+                            ) : (
+                                <div className="about-grid">
+                                    <div className="about-text reveal">
+                                        <span className="label">The Journey</span>
+                                        <h2>Ingredient Origins & Innovation</h2>
+                                        <p>From ethical sourcing in diverse global regions to advanced extraction processes, we ensure every ingredient tells a story of quality and transparency.</p>
+                                        <p>Our innovation team works tirelessly to discover new health impacts, ensuring Bioryth remains at the forefront of the nutraceutical industry.</p>
+                                    </div>
+                                    <div className="about-image reveal">
+                                        <img src={science} alt="Science Lab" className="rounded-img" />
+                                    </div>
+                                </div>
+                            )}
+                        </div>
+                    )}
                 </div>
             </section>
         </div>

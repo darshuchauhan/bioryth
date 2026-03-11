@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { Calendar, ChevronLeft, Loader2, List } from 'lucide-react';
-import { fetchPostBySlug } from '../services/wpService';
+import { fetchPostsBySlug } from '../services/wpService';
 import type { WPPost } from '../services/wpService';
 
 interface TOCItem {
@@ -18,7 +18,7 @@ const BlogDetailPage: React.FC = () => {
     useEffect(() => {
         const getPost = async () => {
             if (slug) {
-                const data = await fetchPostBySlug(slug);
+                const data = await fetchPostsBySlug(slug);
                 setPost(data);
             }
             setLoading(false);

@@ -1448,3 +1448,79 @@ footer {
     display: none;
   }
 }
+
+/* Science Page Posts */
+.science-posts-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 3rem;
+  margin-top: 3rem;
+}
+
+.science-post-card {
+  background: white;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+}
+
+.science-post-card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-xl);
+}
+
+.science-post-card .post-image {
+  height: 220px;
+  overflow: hidden;
+}
+
+.science-post-card .post-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: var(--transition);
+}
+
+.science-post-card:hover .post-image img {
+  transform: scale(1.1);
+}
+
+.science-post-card .post-content {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.science-post-card .post-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--text-medium);
+  margin-bottom: 1rem;
+}
+
+.science-post-card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+  line-height: 1.3;
+  color: var(--primary);
+}
+
+.science-post-card .post-excerpt {
+  font-size: 0.95rem;
+  color: var(--text-medium);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .science-posts-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+}

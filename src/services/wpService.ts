@@ -15,9 +15,13 @@ export interface WPPost {
     };
 }
 
-export const fetchPosts = async (): Promise<WPPost[]> => {
+export const fetchPosts = async (excludeCategories: number[] = []): Promise<WPPost[]> => {
     try {
-        const response = await fetch(`${WP_API_URL}/posts?_embed&per_page=6`);
+        let url = `${WP_API_URL}/posts?_embed&per_page=10`;
+        if (excludeCategories.length > 0) {
+            url += `&categories_exclude=${excludeCategories.join(',')}`;
+        }
+        const response = await fetch(url);
         if (!response.ok) throw new Error('Failed to fetch posts');
         return await response.json();
     } catch (error) {

@@ -10,9 +10,16 @@ const NewsPage: React.FC = () => {
 
     useEffect(() => {
         const getPosts = async () => {
-            const data = await fetchPosts();
-            setPosts(data);
-            setLoading(false);
+            try {
+                const { fetchCategoryBySlug } = await import('../services/wpService');
+                const scienceCategoryId = await fetchCategoryBySlug('science');
+                const data = await fetchPosts(scienceCategoryId ? [scienceCategoryId] : []);
+                setPosts(data);
+            } catch (error) {
+                console.error('Error in getPosts:', error);
+            } finally {
+                setLoading(false);
+            }
         };
         getPosts();
     }, []);

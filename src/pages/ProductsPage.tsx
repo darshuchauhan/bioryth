@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Search, ChevronRight, Loader2, ArrowRight } from 'lucide-react';
-import { fetchProducts, type WPPost } from '../services/wpService';
+import { fetchProducts, fetchCategories, type WPPost } from '../services/wpService';
 
 interface Category {
     id: string;
@@ -9,38 +9,63 @@ interface Category {
     color: string;
 }
 
-const categories: Category[] = [
-    { id: 'longevity', name: 'HEALTHY AGING + LONGEVITY', color: '#8B5CF6' },
-    { id: 'collagen', name: 'COLLAGEN & BEAUTY SCIENCE', color: '#EC4899' },
-    { id: 'heart', name: 'HEART HEALTH & VITALITY', color: '#EF4444' },
-    { id: 'cognitive', name: 'COGNITIVE PERFORMANCE & BRAIN', color: '#3B82F6' },
-    { id: 'metabolic', name: 'METABOLIC & WEIGHT', color: '#10B981' },
-    { id: 'vitamin', name: 'VITAMINS & ESSENTIALS', color: '#F59E0B' },
-    { id: 'amino', name: 'AMINO ACIDS', color: '#84CC16' },
-    { id: 'structural', name: 'BONE, JOINT & STRUCTURAL', color: '#6B7280' }
-];
+// Color palette mapping to maintain premium design
+const getColorByName = (name: string): string => {
+    const lowerName = name.toLowerCase();
+    if (lowerName.includes('longevity') || lowerName.includes('aging')) return '#8B5CF6'; // Purple
+    if (lowerName.includes('collagen') || lowerName.includes('beauty')) return '#EC4899'; // Pink
+    if (lowerName.includes('heart') || lowerName.includes('vitality')) return '#EF4444'; // Red
+    if (lowerName.includes('cognitive') || lowerName.includes('brain')) return '#3B82F6'; // Blue
+    if (lowerName.includes('metabolic') || lowerName.includes('weight')) return '#10B981'; // Green
+    if (lowerName.includes('vitamin') || lowerName.includes('essential')) return '#F59E0B'; // Amber
+    if (lowerName.includes('amino')) return '#84CC16'; // Lime
+    if (lowerName.includes('structural') || lowerName.includes('bone') || lowerName.includes('joint')) return '#6B7280'; // Gray
+    return '#4F46E5'; // Default Indigo
+};
 
 const ProductsPage: React.FC = () => {
     const [allProducts, setAllProducts] = useState<WPPost[]>([]);
-    const [activeCategory, setActiveCategory] = useState<Category>(categories[0]);
+    const [categories, setCategories] = useState<Category[]>([]);
+    const [activeCategory, setActiveCategory] = useState<Category | null>(null);
     const [searchTerm, setSearchTerm] = useState('');
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        const loadProducts = async () => {
-            const data = await fetchProducts();
-            setAllProducts(data);
-            setLoading(false);
+        const loadData = async () => {
+            setLoading(true);
+            try {
+                // Fetch dynamic categories from WP
+                const wpCats = await fetchCategories();
+                const mappedCats: Category[] = wpCats.map(cat => ({
+                    id: cat.id.toString(),
+                    name: cat.name.toUpperCase(),
+                    color: getColorByName(cat.name)
+                }));
+                
+                setCategories(mappedCats);
+                if (mappedCats.length > 0) setActiveCategory(mappedCats[0]);
+
+                // Fetch all products
+                const data = await fetchProducts();
+                setAllProducts(data);
+            } catch (error) {
+                console.error('Error loading data:', error);
+            } finally {
+                setLoading(false);
+            }
         };
-        loadProducts();
+        loadData();
     }, []);
 
 
     const filteredProducts = allProducts.filter(p => {
         const matchesSearch = p.title.rendered.toLowerCase().includes(searchTerm.toLowerCase());
-        // Simple filter logic: if we had categories in WP, we'd filter by those.
-        // For now, we'll show all or use a placeholder logic.
-        return matchesSearch;
+        
+        // Filter by category if we have an active selection
+        if (!activeCategory) return matchesSearch;
+        const matchesCategory = p.categories && p.categories.includes(parseInt(activeCategory.id));
+        
+        return matchesSearch && matchesCategory;
     });
 
     return (
@@ -72,7 +97,7 @@ const ProductsPage: React.FC = () => {
                             {categories.map((cat) => (
                                 <button
                                     key={cat.id}
-                                    className={`category-item ${activeCategory.id === cat.id ? 'active' : ''}`}
+                                    className={`category-item ${activeCategory?.id === cat.id ? 'active' : ''}`}
                                     onClick={() => {
                                         setActiveCategory(cat);
                                         setSearchTerm('');
@@ -91,10 +116,12 @@ const ProductsPage: React.FC = () => {
 
                     {/* Main Content */}
                     <main className="products-content reveal" style={{ animationDelay: '0.4s' }}>
-                        <div className="category-header" style={{ borderColor: activeCategory.color }}>
-                            <h2 style={{ color: activeCategory.color }}>{activeCategory.name}</h2>
-                            <span className="product-count">{loading ? '...' : filteredProducts.length} Products</span>
-                        </div>
+                        {activeCategory && (
+                            <div className="category-header" style={{ borderColor: activeCategory.color }}>
+                                <h2 style={{ color: activeCategory.color }}>{activeCategory.name}</h2>
+                                <span className="product-count">{loading ? '...' : filteredProducts.length} Products</span>
+                            </div>
+                        )}
 
                         <div className="products-grid-container">
                             {loading ? (
@@ -130,9 +157,9 @@ const ProductsPage: React.FC = () => {
                                             </Link>
                                         );
                                     })}
-                                    {filteredProducts.length === 0 && (
+                                    {filteredProducts.length === 0 && !loading && (
                                         <div className="no-results">
-                                            No products found matching your search.
+                                            No products found in this category.
                                         </div>
                                     )}
                                 </div>

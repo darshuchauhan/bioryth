@@ -7,6 +7,7 @@ export interface WPPost {
     content: { rendered: string };
     excerpt: { rendered: string };
     date: string;
+    categories: number[];
     featured_media: number;
     acf?: {
         about?: string;
@@ -36,6 +37,29 @@ export interface WPPost {
     };
 }
 
+export interface WPCategory {
+    id: number;
+    name: string;
+    slug: string;
+    count: number;
+    description: string;
+}
+
+export const fetchCategories = async (): Promise<WPCategory[]> => {
+    try {
+        // Fetch categories but exclude News (1) and Science (3)
+        const response = await fetch(`${WP_API_URL}/categories?per_page=100&exclude=1,3`);
+        if (response.ok) {
+            const data = await response.json();
+            if (Array.isArray(data)) return data;
+        }
+        return [];
+    } catch (error) {
+        console.error('Error fetching categories:', error);
+        return [];
+    }
+};
+
 export const fetchPosts = async (excludeCategories: number[] = []): Promise<WPPost[]> => {
     try {
         let url = `${WP_API_URL}/posts?_embed&per_page=10`;
@@ -53,22 +77,15 @@ export const fetchPosts = async (excludeCategories: number[] = []): Promise<WPPo
 
 export const fetchProducts = async (): Promise<WPPost[]> => {
     try {
-        // Try products first (plural)
-        const response = await fetch(`${WP_API_URL}/products?_embed&per_page=100`);
+        // Exclude News (1) and Science (3) to return only Products
+        const response = await fetch(`${WP_API_URL}/posts?_embed&per_page=100&categories_exclude=1,3`);
+        
         if (response.ok) {
             const data = await response.json();
-            if (Array.isArray(data) && data.length > 0) return data;
-        }
-        
-        // Fallback to product (singular) which is common for CPTs
-        const altResponse = await fetch(`${WP_API_URL}/product?_embed&per_page=100`);
-        if (altResponse.ok) {
-            const altData = await altResponse.json();
-            if (Array.isArray(altData)) return altData;
+            if (Array.isArray(data)) return data;
         }
 
-        // Final fallback: try posts with a category named 'products' if all else fails
-        console.warn('Failed to fetch from /products or /product, trying fallback...');
+        console.warn('Failed to fetch products from /posts endpoint');
         return [];
     } catch (error) {
         console.error('Error fetching WP products:', error);
@@ -78,16 +95,11 @@ export const fetchProducts = async (): Promise<WPPost[]> => {
 
 export const fetchProductBySlug = async (slug: string): Promise<WPPost | null> => {
     try {
-        const response = await fetch(`${WP_API_URL}/products?slug=${slug}&_embed`);
+        // Fetch specific product by slug from the /posts endpoint
+        const response = await fetch(`${WP_API_URL}/posts?slug=${slug}&_embed`);
         if (response.ok) {
             const data = await response.json();
             if (data.length > 0) return data[0];
-        }
-
-        const altResponse = await fetch(`${WP_API_URL}/product?slug=${slug}&_embed`);
-        if (altResponse.ok) {
-            const altData = await altResponse.json();
-            return altData.length > 0 ? altData[0] : null;
         }
 
         return null;

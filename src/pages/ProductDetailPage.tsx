@@ -56,15 +56,39 @@ const ProductDetailPage: React.FC = () => {
         { id: 'faqs', title: 'FAQs', content: acf?.faqs, icon: <HelpCircle size={24} /> },
     ].filter(s => s.content);
 
+    const processWPContent = (html: string) => {
+        if (!html) return '';
+        
+        // Handle [caption] shortcodes
+        // Example: [caption id="..." align="..." width="..."]<img ... /> Caption Text[/caption]
+        let processed = html.replace(/\[caption[^\]]*\](.*?)\[\/caption\]/gs, (_, content) => {
+            // Extract the img tag and the text outside it
+            const imgMatch = content.match(/<img[^>]*>/);
+            const imgTag = imgMatch ? imgMatch[0] : '';
+            const captionText = content.replace(imgTag, '').trim();
+            
+            return `
+                <figure class="wp-caption">
+                    ${imgTag}
+                    ${captionText ? `<figcaption class="wp-caption-text">${captionText}</figcaption>` : ''}
+                </figure>
+            `;
+        });
+
+        return processed;
+    };
+
     const renderFormattedContent = (content: string, isSpec: boolean = false) => {
         if (!content) return null;
 
-        // 1. Check if it's HTML
-        if (/<[a-z][\s\S]*>/i.test(content)) {
-            return <div className="wp-content" dangerouslySetInnerHTML={{ __html: content }} />;
+        const processedContent = processWPContent(content);
+
+        // 1. Check if it's HTML or contains shortcodes
+        if (/<[a-z][\s\S]*>/i.test(processedContent)) {
+            return <div className="wp-content" dangerouslySetInnerHTML={{ __html: processedContent }} />;
         }
 
-        const lines = content.split('\n').map(l => l.trim()).filter(l => l);
+        const lines = processedContent.split('\n').map(l => l.trim()).filter(l => l);
 
         // 2. Check for Specification Table (Key: Value)
         const colonLines = lines.filter(l => l.includes(':'));

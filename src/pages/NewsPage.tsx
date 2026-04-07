@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Calendar, ChevronRight, Loader2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { fetchPosts } from '../services/wpService';
 import type { WPPost } from '../services/wpService';
 
 const NewsPage: React.FC = () => {
@@ -11,9 +10,9 @@ const NewsPage: React.FC = () => {
     useEffect(() => {
         const getPosts = async () => {
             try {
-                const { fetchCategoryBySlug } = await import('../services/wpService');
-                const scienceCategoryId = await fetchCategoryBySlug('science');
-                const data = await fetchPosts(scienceCategoryId ? [scienceCategoryId] : []);
+                const { fetchCategoryBySlug, fetchPostsByCategory } = await import('../services/wpService');
+                const newsCategoryId = await fetchCategoryBySlug('news');
+                const data = newsCategoryId ? await fetchPostsByCategory(newsCategoryId) : [];
                 setPosts(data);
             } catch (error) {
                 console.error('Error in getPosts:', error);

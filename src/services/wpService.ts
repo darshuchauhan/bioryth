@@ -8,6 +8,21 @@ export interface WPPost {
     excerpt: { rendered: string };
     date: string;
     featured_media: number;
+    acf?: {
+        about?: string;
+        why?: string;
+        market_insights?: string;
+        technology?: string;
+        marketing_support?: string;
+        faqs?: string;
+        short_description?: string;
+        'key-highlights'?: string;
+        specification?: string;
+        'quality_&_certifications'?: string;
+        technology_advantages?: string;
+        applications?: string;
+        packaging?: string;
+    };
     _embedded?: {
         'wp:featuredmedia'?: Array<{
             source_url: string;
@@ -27,6 +42,29 @@ export const fetchPosts = async (excludeCategories: number[] = []): Promise<WPPo
     } catch (error) {
         console.error('Error fetching WP posts:', error);
         return [];
+    }
+};
+
+export const fetchProducts = async (): Promise<WPPost[]> => {
+    try {
+        const response = await fetch(`${WP_API_URL}/products?_embed&per_page=100`);
+        if (!response.ok) throw new Error('Failed to fetch products');
+        return await response.json();
+    } catch (error) {
+        console.error('Error fetching WP products:', error);
+        return [];
+    }
+};
+
+export const fetchProductBySlug = async (slug: string): Promise<WPPost | null> => {
+    try {
+        const response = await fetch(`${WP_API_URL}/products?slug=${slug}&_embed`);
+        if (!response.ok) throw new Error('Failed to fetch product by slug');
+        const products = await response.json();
+        return products.length > 0 ? products[0] : null;
+    } catch (error) {
+        console.error('Error fetching WP product by slug:', error);
+        return null;
     }
 };
 

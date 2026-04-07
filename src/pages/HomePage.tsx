@@ -5,6 +5,7 @@ import documentSupport from '../assets/document-support.jpg';
 import quickDelivery from '../assets/quick-delivery.jpg';
 import transparentPricing from '../assets/transparent-pricing.jpg';
 import Counter from '../components/Counter';
+import ProductGrid from '../components/ProductGrid';
 
 const HomePage: React.FC = () => {
     return (
@@ -104,6 +105,8 @@ const HomePage: React.FC = () => {
                     </div>
                 </div>
             </section>
+
+            <ProductGrid title="Our Featured Ingredients" limit={4} />
 
 
             <section id="why-choose-us" className="why-us section">

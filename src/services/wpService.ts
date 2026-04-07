@@ -27,6 +27,12 @@ export interface WPPost {
         'wp:featuredmedia'?: Array<{
             source_url: string;
         }>;
+        'wp:term'?: Array<Array<{
+            id: number;
+            name: string;
+            slug: string;
+            taxonomy: string;
+        }>>;
     };
 }
 
@@ -47,9 +53,23 @@ export const fetchPosts = async (excludeCategories: number[] = []): Promise<WPPo
 
 export const fetchProducts = async (): Promise<WPPost[]> => {
     try {
+        // Try products first (plural)
         const response = await fetch(`${WP_API_URL}/products?_embed&per_page=100`);
-        if (!response.ok) throw new Error('Failed to fetch products');
-        return await response.json();
+        if (response.ok) {
+            const data = await response.json();
+            if (Array.isArray(data) && data.length > 0) return data;
+        }
+        
+        // Fallback to product (singular) which is common for CPTs
+        const altResponse = await fetch(`${WP_API_URL}/product?_embed&per_page=100`);
+        if (altResponse.ok) {
+            const altData = await altResponse.json();
+            if (Array.isArray(altData)) return altData;
+        }
+
+        // Final fallback: try posts with a category named 'products' if all else fails
+        console.warn('Failed to fetch from /products or /product, trying fallback...');
+        return [];
     } catch (error) {
         console.error('Error fetching WP products:', error);
         return [];
@@ -59,9 +79,18 @@ export const fetchProducts = async (): Promise<WPPost[]> => {
 export const fetchProductBySlug = async (slug: string): Promise<WPPost | null> => {
     try {
         const response = await fetch(`${WP_API_URL}/products?slug=${slug}&_embed`);
-        if (!response.ok) throw new Error('Failed to fetch product by slug');
-        const products = await response.json();
-        return products.length > 0 ? products[0] : null;
+        if (response.ok) {
+            const data = await response.json();
+            if (data.length > 0) return data[0];
+        }
+
+        const altResponse = await fetch(`${WP_API_URL}/product?slug=${slug}&_embed`);
+        if (altResponse.ok) {
+            const altData = await altResponse.json();
+            return altData.length > 0 ? altData[0] : null;
+        }
+
+        return null;
     } catch (error) {
         console.error('Error fetching WP product by slug:', error);
         return null;

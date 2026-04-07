@@ -19,6 +19,37 @@ header.sticky {
   border-bottom: 1px solid var(--glass-border);
 }
 
+header.not-home {
+  background: white;
+  border-bottom: 1px solid var(--glass-border);
+  height: 80px;
+}
+
+header.not-home .nav-links a {
+  color: var(--text-dark);
+}
+
+header.not-home .brand-logo {
+  height: 70px;
+}
+
+header.not-home .header-socials {
+  border-color: rgba(0, 0, 0, 0.1);
+}
+
+header.not-home .header-socials a {
+  color: var(--text-medium);
+}
+
+header.not-home .mobile-menu-toggle {
+  color: var(--text-dark);
+}
+
+header.not-home .connect-btn {
+  border-color: var(--primary);
+  color: var(--primary) !important;
+}
+
 nav {
   display: flex;
   justify-content: space-between;

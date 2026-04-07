@@ -89,6 +89,11 @@ const SciencePage: React.FC = () => {
                                                     src={post._embedded?.['wp:featuredmedia']?.[0]?.source_url || science}
                                                     alt={post.title.rendered}
                                                 />
+                                                {post._embedded?.['wp:term']?.[0]?.[0] && (
+                                                    <span className="news-tag" style={{ position: 'absolute', top: '15px', right: '15px' }}>
+                                                        {post._embedded['wp:term'][0][0].name}
+                                                    </span>
+                                                )}
                                             </div>
                                             <div className="post-content">
                                                 <div className="post-meta">

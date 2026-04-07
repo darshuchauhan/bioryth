@@ -18,6 +18,8 @@ import { Linkedin, Instagram, Facebook, Send, MessageCircle, Menu, X } from 'luc
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
 
   useEffect(() => {
     if (isMenuOpen) {
@@ -55,14 +57,21 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     };
 
     window.addEventListener('scroll', handleScroll);
-    handleScroll();
+    // Trigger scroll check on mount and whenever pathname changes
+    // Add a small timeout to ensure elements are rendered before check
+    const timeout = setTimeout(() => {
+      handleScroll();
+    }, 100);
 
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [isMenuOpen]);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      clearTimeout(timeout);
+    };
+  }, [isMenuOpen, location.pathname]);
 
   return (
     <div className={`app-wrapper ${isMenuOpen ? 'menu-open' : ''}`}>
-      <header>
+      <header className={!isHomePage ? 'not-home' : ''}>
         <nav className="container no-padding-mobile">
           <div className="logo-group">
             <Link to="/" className="logo" onClick={closeMenu}>

@@ -49,7 +49,9 @@ const NewsPage: React.FC = () => {
                                             src={post._embedded?.['wp:featuredmedia']?.[0]?.source_url || 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&q=80&w=800'}
                                             alt={post.title.rendered}
                                         />
-                                        <span className="news-tag">Update</span>
+                                        {post._embedded?.['wp:term']?.[0]?.[0] && (
+                                            <span className="news-tag">{post._embedded['wp:term'][0][0].name}</span>
+                                        )}
                                     </div>
                                     <div className="news-body">
                                         <div className="news-meta">

@@ -285,10 +285,11 @@ header.sticky .mobile-menu-toggle {
   max-width: 900px;
 }
 
-.hero h1 {
+.hero h1.reveal {
   font-size: 4.5rem;
   margin-bottom: 1.5rem;
   line-height: 1.1;
+  color: #ffffff !important;
 }
 
 .hero p {
@@ -322,7 +323,7 @@ header.sticky .mobile-menu-toggle {
   box-shadow: 0 15px 30px rgba(37, 211, 102, 0.3);
 }
 
-.hero-badge {
+.hero-badge.reveal {
   display: inline-block;
   padding: 0.5rem 1.5rem;
   background: rgba(255, 255, 255, 0.1);
@@ -334,7 +335,7 @@ header.sticky .mobile-menu-toggle {
   letter-spacing: 2px;
   font-size: 0.85rem;
   margin-bottom: 2rem;
-  color: var(--secondary);
+  color: #ffffff !important;
 }
 
 .hero-btns {

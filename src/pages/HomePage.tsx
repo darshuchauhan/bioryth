@@ -26,7 +26,7 @@ const HomePage: React.FC = () => {
                 <div className="hero-overlay"></div>
                 <div className="container hero-content">
                     <div className="hero-badge reveal">India's Premier Nutraceutical Ingredient Partner</div>
-                    <h1 className="reveal">
+                    <h1 className="reveal ">
                         India’s Premier <br /><span className="gradient-text">Nutraceutical Ingredient</span> Partner
                     </h1>
                     <p className="reveal">

@@ -90,23 +90,18 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
           <ul className={`nav-links ${isMenuOpen ? 'active' : ''}`}>
             <li><Link to="/" onClick={closeMenu}>Home</Link></li>
-            <li><Link to="/about" onClick={closeMenu}>About</Link></li>
-            <li><Link to="/products" onClick={closeMenu}>Products</Link></li>
-            <li><Link to="/science" onClick={closeMenu}>Story / Science</Link></li>
+            <li><Link to="/about" onClick={closeMenu}>About Us</Link></li>
+            <li><Link to="/products" onClick={closeMenu}>Product List</Link></li>
+            <li><Link to="/science" onClick={closeMenu}>Science Story</Link></li>
             <li><Link to="/news" onClick={closeMenu}>Industry News</Link></li>
-            <li><Link to="/contact" onClick={closeMenu}>Contact</Link></li>
-            <li className="mobile-only-btn"><Link to="/contact" className="btn btn-primary nav-btn text-white" onClick={closeMenu}>Request Sample</Link></li>
+            <li><Link to="/contact" onClick={closeMenu}>Contact Us</Link></li>
           </ul>
-
-          <div className="desktop-only-btn">
-            <Link to="/contact" className="btn btn-primary nav-btn text-white">Request Sample</Link>
-          </div>
         </nav>
       </header>
 
       {children}
 
-      <a href="https://wa.me/919104133333" className="whatsapp-float" target="_blank" rel="noopener noreferrer">
+      <a href="https://wa.me/919909117959" className="whatsapp-float" target="_blank" rel="noopener noreferrer">
         <MessageCircle size={30} />
       </a>
 
@@ -118,7 +113,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                 <img src="/icon.png" alt="Bioryth Logo" />
               </Link>
               <p className="footer-desc">
-                High-performance nutraceutical ingredients. Purity by science, driven by nature since 2012.
+                Science-driven. Nature-inspired. Performance delivered.
               </p>
               <div className="social-links">
                 <a href="#" aria-label="Facebook"><Facebook size={20} /></a>
@@ -132,18 +127,19 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
               <ul className="footer-links">
                 <li><Link to="/">Home</Link></li>
                 <li><Link to="/about">About Us</Link></li>
-                <li><Link to="/products">Products</Link></li>
-                <li><Link to="/science">Story / Science</Link></li>
-                <li><Link to="/news">Blog / News</Link></li>
+                <li><Link to="/products">Product List</Link></li>
+                <li><Link to="/science">Science Story</Link></li>
+                <li><Link to="/news">Blog</Link></li>
+                <li><Link to="/news">Industry News</Link></li>
                 <li><Link to="/contact">Contact Us</Link></li>
               </ul>
             </div>
 
             <div className="footer-col">
-              <h4>Support</h4>
+              <h4>Contact Us</h4>
               <ul className="footer-links">
-                <li><Link to="/contact">Request Sample</Link></li>
-                <li><a href="https://wa.me/919104133333">WhatsApp Chat</a></li>
+                <li>Phone: +91 9909117959</li>
+                <li>Email: info@bioryth.com</li>
                 <li><Link to="/contact">Inquiry Form</Link></li>
               </ul>
             </div>

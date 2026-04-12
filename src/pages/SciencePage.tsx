@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Beaker, BookOpen, Microscope, Calendar, ChevronRight, Loader2 } from 'lucide-react';
+import { Beaker, Leaf, Microscope, Calendar, ChevronRight, Loader2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { fetchCategoryBySlug, fetchPostsByCategory } from '../services/wpService';
 import type { WPPost } from '../services/wpService';
@@ -47,19 +47,19 @@ const SciencePage: React.FC = () => {
 
                     <div className="science-grid">
                         <div className="science-card reveal">
-                            <div className="sci-icon"><Beaker size={40} /></div>
-                            <h3>Ingredient Functionality</h3>
-                            <p>Detailed insights into how our premium ingredients interact with biological systems to deliver health benefits.</p>
-                        </div>
-                        <div className="science-card reveal">
                             <div className="sci-icon"><Microscope size={40} /></div>
-                            <h3>Quality Control</h3>
-                            <p>Every batch undergoes stringent testing for purity, potency, and safety in our state-of-the-art facilities.</p>
+                            <h3>Research-backed ingredients</h3>
+                            <p>Every ingredient is selected based on documented safety and clinical efficacy, ensuring high performance in every formulation.</p>
                         </div>
                         <div className="science-card reveal">
-                            <div className="sci-icon"><BookOpen size={40} /></div>
-                            <h3>Research-Backed Info</h3>
-                            <p>Our formulations are guided by the latest clinical research and industry-leading nutritional studies.</p>
+                            <div className="sci-icon"><Beaker size={40} /></div>
+                            <h3>Science-driven formulation</h3>
+                            <p>Our experts assist in creating stabilized, biologically active formulations that set your product apart in the market.</p>
+                        </div>
+                        <div className="science-card reveal">
+                            <div className="sci-icon"><Leaf size={40} /></div>
+                            <h3>Nature-inspired performance</h3>
+                            <p>We maximize the innate potential of natural ingredients through advanced extraction and optimization technologies.</p>
                         </div>
                     </div>
                 </div>

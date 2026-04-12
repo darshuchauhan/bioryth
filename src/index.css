@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@400;600;700&display=swap');
 
 :root {
-  --primary: #005f73;
-  --primary-light: #0a9396;
-  --primary-dark: #002d36;
+  --primary: #003049;
+  --primary-light: #005f73;
+  --primary-dark: #001219;
   --secondary: #add036;
   --accent: #ee9b00;
   --text-dark: #001219;
@@ -12,18 +12,18 @@
   --bg-light: #ffffff;
   --bg-soft: #f4f7f6;
   --success: #10b981;
-  --glass: rgba(255, 255, 255, 0.85);
+  --glass: rgba(255, 255, 255, 0.9);
   --glass-border: rgba(255, 255, 255, 0.3);
   --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  --shadow-md: 0 10px 20px -5px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 30px 60px -15px rgba(0, 0, 0, 0.12);
+  --transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   --radius-sm: 8px;
   --radius-md: 12px;
-  --radius-lg: 20px;
-  --gradient-primary: linear-gradient(135deg, #005f73 0%, #0a9396 100%);
-  --gradient-premium: linear-gradient(135deg, #001219 0%, #005f73 100%);
+  --radius-lg: 30px;
+  --gradient-primary: linear-gradient(135deg, #003049 0%, #005f73 100%);
+  --gradient-premium: linear-gradient(135deg, #001219 0%, #003049 100%);
   --gradient-accent: linear-gradient(135deg, #add036 0%, #10b981 100%);
 }
 

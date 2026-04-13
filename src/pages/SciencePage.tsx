@@ -75,7 +75,6 @@ const SciencePage: React.FC = () => {
                     ) : (
                         <>
                             <div className="section-header reveal text-center">
-                                <span className="label">The Journey</span>
                                 <h2>Science Stories & Innovation</h2>
                                 <p>Discover the research and origins behind our premium ingredients.</p>
                             </div>

@@ -29,6 +29,22 @@ header.not-home .nav-links a {
   color: var(--text-dark);
 }
 
+header.not-home .nav-links a::after {
+  background-color: var(--primary);
+}
+
+header.not-home .nav-links a:hover {
+  color: var(--primary);
+}
+
+header.not-home .nav-links a:hover::after {
+  width: 100%;
+}
+
+header.not-home .nav-links a.active {
+  color: var(--primary);
+}
+
 header.not-home .brand-logo {
   height: 85px;
 }
@@ -75,17 +91,49 @@ header.sticky .brand-logo {
   font-weight: 600;
   font-size: 0.95rem;
   transition: var(--transition);
+  position: relative;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--secondary);
+  transition: width 0.3s ease;
 }
 
 .nav-links a:hover {
   color: var(--secondary);
 }
 
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.nav-links a.active {
+  color: var(--primary);
+}
+
 header.sticky .nav-links a {
   color: var(--text-dark);
 }
 
+header.sticky .nav-links a::after {
+  background-color: var(--primary);
+}
+
 header.sticky .nav-links a:hover {
+  color: var(--primary);
+}
+
+header.sticky .nav-links a:hover::after {
+  width: 100%;
+}
+
+header.sticky .nav-links a.active {
   color: var(--primary);
 }
 
@@ -1109,7 +1157,7 @@ footer {
 }
 
 .footer-logo img {
-  height: 140px;
+  height: 180px;
   margin-bottom: 1.5rem;
 }
 

@@ -41,7 +41,6 @@ const HomePage: React.FC = () => {
             <section id="services" className="services section bg-soft">
                 <div className="container">
                     <div className="section-header reveal">
-                        <span className="label">Our Expertise</span>
                         <h2>Core Business Services</h2>
                         <p>Comprehensive solutions from concept to creation, ensuring your products exceed market expectations.</p>
                     </div>
@@ -117,12 +116,12 @@ const HomePage: React.FC = () => {
                         {[
                             {
                                 title: "Premium-grade Ingredients",
-                                desc: "Lab-tested ingredients for safer, high-performance formulations.",
+                                desc: "Globally sourced, clinically backed nutraceutical and functional ingredients designed for superior performance, purity, and consistency.",
                                 img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800"
                             },
                             {
                                 title: "Document Support",
-                                desc: "Full COA, MSDS, TDS, and comprehensive regulatory compliance assistance.",
+                                desc: "Efficient and dependable supply chain ensuring timely delivery across domestic and international markets without compromising quality.",
                                 img: documentSupport
                             },
                             {

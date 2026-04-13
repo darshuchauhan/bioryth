@@ -51,9 +51,9 @@ const AboutPage: React.FC = () => {
                                 Our strong international sourcing network ensures consistent purity, certified safety standards, and competitive pricing, enabling brands and manufacturers to develop world-class products.
                                 With reliability, transparency, and uncompromised quality at the heart of our operations, Bioryth Enterprise stands as your ideal partner for all raw material requirements.
                             </p>
-                            <a href="https://wa.me/919909117959" target="_blank" rel="noopener noreferrer" className="btn btn-primary mt-4 inline-flex items-center gap-2">
-                                <MessageCircle size={20} />
-                                Inquiry via WhatsApp
+                            <a href="https://wa.me/919909117959" target="_blank" rel="noopener noreferrer" className="btn btn-primary mt-4 inline-flex items-center gap-2 bg-green">
+                                <MessageCircle size={20} strokeWidth={2.5} />
+                                <span>Inquiry via WhatsApp</span>
                             </a>
                         </div>
                         <div className="about-image reveal">
@@ -188,31 +188,44 @@ const AboutPage: React.FC = () => {
                 </div>
             </section>
 
-            {/* Corporate Office Section */}
+            {/* Reach Out / Corporate Office Section */}
             <section className="corporate-office section bg-soft">
                 <div className="container">
                     <div className="section-header reveal">
-                        <span className="label">Reach Out</span>
-                        <h2>Corporate Office</h2>
+                        <span className="label">Get In Touch</span>
+                        <h2>Contact Us & Corporate Office</h2>
                         <p>Partner with us for your premium ingredient needs.</p>
                     </div>
                     <div className="contact-grid">
-                        <div className="reveal">
-                            <div className="info-block">
-                                <h3>Call Us</h3>
-                                <p><Phone size={20} className="inline mr-2 text-primary" /> +91 9909117959</p>
-                            </div>
-                            <div className="info-block">
-                                <h3>Email</h3>
-                                <p><Mail size={20} className="inline mr-2 text-primary" /> info@bioryth.com</p>
-                            </div>
-                            <Link to="/contact" className="btn btn-primary mt-2">Visit Contact Page</Link>
+                        <div className="contact-form-container reveal">
+                            <form className="contact-form" onSubmit={(e) => { e.preventDefault(); alert('Inquiry sent!'); }}>
+                                <div className="form-group">
+                                    <input type="text" placeholder="Full Name" required />
+                                </div>
+                                <div className="form-group">
+                                    <input type="email" placeholder="Email Address" required />
+                                </div>
+                                <div className="form-group">
+                                    <textarea placeholder="Tell us about your requirement..." rows={4} required></textarea>
+                                </div>
+                                <button type="submit" className="btn btn-primary">Send Inquiry</button>
+                            </form>
                         </div>
                         <div className="reveal">
                             <div className="info-block">
-                                <h3>Office Location</h3>
-                                <p><MapPin size={20} className="inline mr-2 text-primary" /> India Headquarters</p>
-                                <p className="text-medium">Available for scheduled B2B consultations and inquiries.</p>
+                                <h3 className="inline-flex items-center gap-2"><MapPin size={20} className="text-secondary" /> Corporate Office</h3>
+                                <p>4th Floor, OZ House, GhodDod Rd,</p>
+                                <p>near Umra Police Station,</p>
+                                <p>opposite Kavi Narmad Central Library,</p>
+                                <p>Maktampur, Athwa, Surat, Gujarat 395007</p>
+                            </div>
+                            <div className="info-block">
+                                <h3>Call Us</h3>
+                                <p className="inline-flex items-center gap-2"><Phone size={20} className="text-primary" /> <span>+91 99091 17959</span></p>
+                            </div>
+                            <div className="info-block">
+                                <h3>Email</h3>
+                                <p className="inline-flex items-center gap-2"><Mail size={20} className="text-primary" /> <span>info@bioryth.com</span></p>
                             </div>
                         </div>
                     </div>

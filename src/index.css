@@ -116,3 +116,22 @@ ul {
   color: var(--primary);
   background: transparent;
 }
+
+/* Utility Classes */
+.flex { display: flex; }
+.inline-flex { display: inline-flex; }
+.flex-col { flex-direction: column; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }
+.justify-between { justify-content: space-between; }
+.gap-1 { gap: 0.5rem; }
+.gap-2 { gap: 1rem; }
+.gap-3 { gap: 1.5rem; }
+.mt-2 { margin-top: 0.5rem; }
+.mt-4 { margin-top: 1.5rem; }
+.mr-2 { margin-right: 0.5rem; }
+.w-fit { width: fit-content; }
+.inline-block { display: inline-block; }
+.align-middle { vertical-align: middle; }
+.text-primary { color: var(--primary); }
+.text-secondary { color: var(--secondary); }

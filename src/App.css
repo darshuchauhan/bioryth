@@ -30,15 +30,7 @@ header.not-home .nav-links a {
 }
 
 header.not-home .brand-logo {
-  height: 70px;
-}
-
-header.not-home .header-socials {
-  border-color: rgba(0, 0, 0, 0.1);
-}
-
-header.not-home .header-socials a {
-  color: var(--text-medium);
+  height: 85px;
 }
 
 header.not-home .mobile-menu-toggle {
@@ -60,46 +52,16 @@ nav {
 .logo-group {
   display: flex;
   align-items: center;
-  gap: 2rem;
-}
-
-.header-socials {
-  display: flex;
-  gap: 1.2rem;
-  border-left: 1px solid rgba(255, 255, 255, 0.2);
-  padding-left: 2rem;
-}
-
-.header-socials a {
-  color: rgba(255, 255, 255, 0.9);
-  transition: var(--transition);
-}
-
-.header-socials a:hover {
-  color: var(--secondary);
-  transform: translateY(-2px);
-}
-
-header.sticky .header-socials {
-  border-color: rgba(0, 0, 0, 0.1);
-}
-
-header.sticky .header-socials a {
-  color: var(--text-medium);
-}
-
-header.sticky .header-socials a:hover {
-  color: var(--primary);
 }
 
 .brand-logo {
-  height: 90px;
+  height: 110px;
   transition: var(--transition);
   display: block;
 }
 
 header.sticky .brand-logo {
-  height: 70px;
+  height: 85px;
 }
 
 .nav-links {
@@ -1125,16 +1087,16 @@ header.sticky .mobile-menu-toggle {
 
 /* Footer */
 footer {
-  background: var(--primary);
+  background: #07344e;
   color: white;
-  padding: 100px 0 40px;
+  padding: 80px 0 20px;
 }
 
 .footer-grid {
   display: grid;
   grid-template-columns: 1.5fr 0.8fr 1fr 1.2fr;
   gap: 3rem;
-  margin-bottom: 60px;
+  margin-bottom: 20px;
 }
 
 .footer-col h4 {
@@ -1147,7 +1109,7 @@ footer {
 }
 
 .footer-logo img {
-  height: 120px;
+  height: 140px;
   margin-bottom: 1.5rem;
 }
 
@@ -1156,28 +1118,6 @@ footer {
   line-height: 1.6;
   margin-bottom: 2rem;
   font-size: 0.95rem;
-}
-
-.social-links {
-  display: flex;
-  gap: 1rem;
-}
-
-.social-links a {
-  width: 40px;
-  height: 40px;
-  background: rgba(255, 255, 255, 0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  color: white;
-  transition: var(--transition);
-}
-
-.social-links a:hover {
-  background: var(--secondary);
-  transform: translateY(-5px);
 }
 
 .footer-links,

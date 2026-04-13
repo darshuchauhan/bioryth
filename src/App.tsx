@@ -14,7 +14,7 @@ const ScrollToTop = () => {
   return null;
 };
 
-import { Linkedin, Instagram, Facebook, Send, MessageCircle, Menu, X } from 'lucide-react';
+import { Send, MessageCircle, Menu, X } from 'lucide-react';
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -77,11 +77,6 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             <Link to="/" className="logo" onClick={closeMenu}>
               <img src="/icon.png" alt="Bioryth Enterprise Logo" className="brand-logo" />
             </Link>
-            <div className="header-socials mobile-hide">
-              <a href="#" aria-label="Facebook"><Facebook size={18} /></a>
-              <a href="#" aria-label="Instagram"><Instagram size={18} /></a>
-              <a href="#" aria-label="LinkedIn"><Linkedin size={18} /></a>
-            </div>
           </div>
 
           <button className="mobile-menu-toggle" onClick={toggleMenu} aria-label="Toggle Menu">
@@ -115,11 +110,6 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
               <p className="footer-desc">
                 Science-driven. Nature-inspired. Performance delivered.
               </p>
-              <div className="social-links">
-                <a href="#" aria-label="Facebook"><Facebook size={20} /></a>
-                <a href="#" aria-label="Instagram"><Instagram size={20} /></a>
-                <a href="#" aria-label="LinkedIn"><Linkedin size={20} /></a>
-              </div>
             </div>
 
             <div className="footer-col">

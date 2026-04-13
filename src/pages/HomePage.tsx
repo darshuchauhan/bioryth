@@ -42,7 +42,7 @@ const HomePage: React.FC = () => {
                 <div className="container">
                     <div className="section-header reveal">
                         <span className="label">Our Expertise</span>
-                        <h2>Core Services</h2>
+                        <h2>Core Business Services</h2>
                         <p>Comprehensive solutions from concept to creation, ensuring your products exceed market expectations.</p>
                     </div>
                     <div className="services-grid">

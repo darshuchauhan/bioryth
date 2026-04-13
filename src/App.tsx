@@ -14,7 +14,7 @@ const ScrollToTop = () => {
   return null;
 };
 
-import { Send, MessageCircle, Menu, X } from 'lucide-react';
+import {  MessageCircle, Menu, X } from 'lucide-react';
 
 const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -134,16 +134,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
               </ul>
             </div>
 
-            <div className="footer-col col-newsletter">
-              <h4>Newsletter</h4>
-              <p>Stay updated with our latest ingredient launches and industry trends.</p>
-              <form className="newsletter-form" onSubmit={(e) => e.preventDefault()}>
-                <input type="email" placeholder="Email Address" required />
-                <button type="submit" className="btn-icon">
-                  <Send size={20} />
-                </button>
-              </form>
-            </div>
+
           </div>
           <div className="footer-bottom">
             <p>&copy; {new Date().getFullYear()} Bioryth Enterprise. All Rights Reserved.</p>

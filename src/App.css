@@ -1122,6 +1122,55 @@ header.sticky .mobile-menu-toggle {
   margin-bottom: 1.5rem;
 }
 
+/* Contact Page Responsive */
+@media (max-width: 1024px) {
+  .contact-grid {
+    gap: 4rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+  
+  .info-block {
+    margin-bottom: 2rem;
+  }
+  
+  .newsletter-box {
+    margin-top: 2rem;
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .contact-grid {
+    gap: 2rem;
+  }
+  
+  .info-block h3 {
+    font-size: 1.1rem;
+  }
+  
+  .info-block p {
+    font-size: 1rem;
+  }
+  
+  .newsletter-box {
+    padding: 1.25rem;
+  }
+  
+  .newsletter-box h3 {
+    font-size: 1.1rem;
+  }
+  
+  .newsletter-box p {
+    font-size: 0.85rem;
+  }
+}
+
 
 
 .text-center {

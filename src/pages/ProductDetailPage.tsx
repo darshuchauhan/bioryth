@@ -44,6 +44,12 @@ const ProductDetailPage: React.FC = () => {
     const { acf, title, _embedded } = product;
     const featuredImage = _embedded?.['wp:featuredmedia']?.[0]?.source_url;
 
+    const extractImageFromContent = (html: string) => {
+        if (!html) return null;
+        const imgMatch = html.match(/<img[^>]+src="([^"]+)"/);
+        return imgMatch ? imgMatch[1] : null;
+    };
+
     const sections = [
         { id: 'about', title: 'About', content: acf?.about, icon: <Info size={24} /> },
         { id: 'key_highlights', title: 'Key Product Highlights', content: acf?.['key-highlights'], icon: <Star size={24} /> },
@@ -54,7 +60,7 @@ const ProductDetailPage: React.FC = () => {
         { id: 'applications', title: 'Applications', content: acf?.applications, icon: <Layers size={24} /> },
         { id: 'packaging', title: 'Packaging', content: acf?.packaging, icon: <Package size={24} /> },
         { id: 'faqs', title: 'FAQs', content: acf?.faqs, icon: <HelpCircle size={24} /> },
-    ].filter(s => s.content);
+    ].filter(s => s.content).map(s => ({ ...s, imageUrl: extractImageFromContent(s.content!) }));
 
     const processWPContent = (html: string) => {
         if (!html) return '';
@@ -257,9 +263,9 @@ const ProductDetailPage: React.FC = () => {
                                     {renderFormattedContent(section.content!, section.id === 'specification')}
                                 </div>
                                 <div className="section-side-image">
-                                    {featuredImage ? (
+                                    {section.imageUrl ? (
                                         <div className="image-panel">
-                                            <img src={featuredImage} alt={`${title.rendered} ${section.title}`} />
+                                            <img src={section.imageUrl} alt={`${title.rendered} ${section.title}`} />
                                         </div>
                                     ) : (
                                         <div className="section-placeholder">

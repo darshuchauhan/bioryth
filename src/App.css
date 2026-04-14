@@ -1827,19 +1827,17 @@ footer {
   letter-spacing: -0.025em;
 }
 
-.product-count {
-  font-size: 0.9rem;
-  font-weight: 600;
-  color: var(--text-medium);
-  background: #f1f5f9;
-  padding: 0.4rem 1rem;
-  border-radius: 20px;
-}
+  .category-section {
+    padding-top: 2rem;
+    margin-top: 2rem;
+    border-top: 1px solid #eef2ff;
+  }
 
-.products-table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
+  .category-section:first-child {
+    border-top: none;
+    margin-top: 0;
+    padding-top: 0;
+  }
 }
 
 .products-table th {

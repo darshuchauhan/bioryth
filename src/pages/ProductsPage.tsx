@@ -26,7 +26,6 @@ const getColorByName = (name: string): string => {
 const ProductsPage: React.FC = () => {
     const [allProducts, setAllProducts] = useState<WPPost[]>([]);
     const [categories, setCategories] = useState<Category[]>([]);
-    const [activeCategory, setActiveCategory] = useState<Category | null>(null);
     const [searchTerm, setSearchTerm] = useState('');
     const [loading, setLoading] = useState(true);
 
@@ -34,18 +33,15 @@ const ProductsPage: React.FC = () => {
         const loadData = async () => {
             setLoading(true);
             try {
-                // Fetch dynamic categories from WP
                 const wpCats = await fetchCategories();
                 const mappedCats: Category[] = wpCats.map(cat => ({
                     id: cat.id.toString(),
                     name: cat.name.toUpperCase(),
                     color: getColorByName(cat.name)
                 }));
-                
-                setCategories(mappedCats);
-                if (mappedCats.length > 0) setActiveCategory(mappedCats[0]);
 
-                // Fetch all products
+                setCategories(mappedCats);
+
                 const data = await fetchProducts();
                 setAllProducts(data);
             } catch (error) {
@@ -54,19 +50,26 @@ const ProductsPage: React.FC = () => {
                 setLoading(false);
             }
         };
+
         loadData();
     }, []);
 
+    const searchQuery = searchTerm.trim().toLowerCase();
 
-    const filteredProducts = allProducts.filter(p => {
-        const matchesSearch = p.title.rendered.toLowerCase().includes(searchTerm.toLowerCase());
-        
-        // Filter by category if we have an active selection
-        if (!activeCategory) return matchesSearch;
-        const matchesCategory = p.categories && p.categories.includes(parseInt(activeCategory.id));
-        
-        return matchesSearch && matchesCategory;
+    const categorySections = categories.map((category) => {
+        const products = allProducts.filter((product) => {
+            const hasCategory = product.categories?.includes(parseInt(category.id, 10));
+            const matchesSearch = searchQuery === '' || product.title.rendered.toLowerCase().includes(searchQuery);
+            return hasCategory && matchesSearch;
+        });
+
+        return {
+            category,
+            products,
+        };
     });
+
+    const totalProducts = categorySections.reduce((sum, section) => sum + section.products.length, 0);
 
     return (
         <div className="products-page">
@@ -80,43 +83,17 @@ const ProductsPage: React.FC = () => {
             </section>
 
             <section className="products-container container">
-                <div className="category-tabs reveal" style={{ animationDelay: '0.2s' }}>
-                    <div className="category-tabs-inner">
-                        {categories.map((cat) => (
-                            <button
-                                key={cat.id}
-                                className={`category-tab ${activeCategory?.id === cat.id ? 'active' : ''}`}
-                                onClick={() => {
-                                    setActiveCategory(cat);
-                                    setSearchTerm('');
-                                }}
-                                style={{
-                                    '--category-color': cat.color
-                                } as React.CSSProperties}
-                            >
-                                {cat.name}
-                            </button>
-                        ))}
-                    </div>
-                </div>
-
                 <main className="products-content reveal" style={{ animationDelay: '0.4s' }}>
                     <div className="product-grid-header">
                         <div>
-                            {activeCategory ? (
-                                <h2 className="category-title" style={{ color: activeCategory.color }}>
-                                    {activeCategory.name}
-                                </h2>
-                            ) : (
-                                <h2 className="category-title">All Ingredients</h2>
-                            )}
+                            <h2 className="category-title">Explore by Category</h2>
                             <p className="category-subtitle">
-                                Browse premium nutraceutical ingredients for targeted support and cellular health.
+                                Scroll through our ingredient categories to find the products that match your formulation goals.
                             </p>
                         </div>
                         <div className="grid-summary">
-                            <span className="product-count-pill" style={{ backgroundColor: activeCategory?.color ?? '#8B5CF6' }}>
-                                {loading ? 'Loading…' : `${filteredProducts.length} Products`}
+                            <span className="product-count-pill" style={{ backgroundColor: '#8B5CF6' }}>
+                                {loading ? 'Loading…' : `${totalProducts} Products`}
                             </span>
                         </div>
                     </div>
@@ -131,48 +108,77 @@ const ProductsPage: React.FC = () => {
                         />
                     </div>
 
-                    <div className="products-grid-container">
-                        {loading ? (
-                            <div className="loading-state">
-                                <Loader2 className="animate-spin" size={32} />
-                                <p>Loading ingredients...</p>
-                            </div>
-                        ) : (
-                            <div className="products-grid">
-                                {filteredProducts.map((product, index) => {
-                                    const featuredImage = product._embedded?.['wp:featuredmedia']?.[0]?.source_url;
-                                    return (
-                                        <Link 
-                                            to={`/products/${product.slug}`} 
-                                            key={product.id} 
-                                            className="product-card"
-                                            style={{ animationDelay: `${index * 0.05}s` }}
-                                        >
-                                            <div className="card-image">
-                                                {featuredImage ? (
-                                                    <img src={featuredImage} alt={product.title.rendered} />
-                                                ) : (
-                                                    <div className="image-placeholder">No Image</div>
-                                                )}
-                                                <div className="card-overlay">
-                                                    <span className="learn-more">LEARN MORE</span>
-                                                </div>
+                    {loading ? (
+                        <div className="loading-state">
+                            <Loader2 className="animate-spin" size={32} />
+                            <p>Loading ingredients...</p>
+                        </div>
+                    ) : (
+                        <>
+                            {categorySections.length > 0 ? (
+                                categorySections.map((section, sectionIndex) => (
+                                    <section
+                                        key={section.category.id}
+                                        className="category-section reveal"
+                                        style={{ animationDelay: `${sectionIndex * 0.08}s` }}
+                                    >
+                                        <div className="category-header">
+                                            <div>
+                                                <h2 style={{ color: section.category.color }}>
+                                                    {section.category.name}
+                                                </h2>
+                                                <p className="category-subtitle">
+                                                    {section.products.length > 0
+                                                        ? `${section.products.length} premium product${section.products.length > 1 ? 's' : ''} in this category.`
+                                                        : 'No products available in this category yet.'}
+                                                </p>
                                             </div>
-                                            <div className="card-info">
-                                                <h3>{product.title.rendered}</h3>
-                                                <ArrowRight size={18} className="card-arrow" />
+                                            <span className="product-count">{section.products.length} items</span>
+                                        </div>
+
+                                        {section.products.length > 0 ? (
+                                            <div className="products-grid">
+                                                {section.products.map((product, index) => {
+                                                    const featuredImage = product._embedded?.['wp:featuredmedia']?.[0]?.source_url;
+                                                    return (
+                                                        <Link
+                                                            to={`/products/${product.slug}`}
+                                                            key={product.id}
+                                                            className="product-card"
+                                                            style={{ animationDelay: `${index * 0.04}s` }}
+                                                        >
+                                                            <div className="card-image">
+                                                                {featuredImage ? (
+                                                                    <img src={featuredImage} alt={product.title.rendered} />
+                                                                ) : (
+                                                                    <div className="image-placeholder">No Image</div>
+                                                                )}
+                                                                <div className="card-overlay">
+                                                                    <span className="learn-more">LEARN MORE</span>
+                                                                </div>
+                                                            </div>
+                                                            <div className="card-info">
+                                                                <h3>{product.title.rendered}</h3>
+                                                                <ArrowRight size={18} className="card-arrow" />
+                                                            </div>
+                                                        </Link>
+                                                    );
+                                                })}
                                             </div>
-                                        </Link>
-                                    );
-                                })}
-                                {filteredProducts.length === 0 && !loading && (
-                                    <div className="no-results">
-                                        No products found in this category.
-                                    </div>
-                                )}
-                            </div>
-                        )}
-                    </div>
+                                        ) : (
+                                            <div className="empty-category-message">
+                                                No ingredients found for this category.
+                                            </div>
+                                        )}
+                                    </section>
+                                ))
+                            ) : (
+                                <div className="no-results">
+                                    No products found. Try a different search term or select another category.
+                                </div>
+                            )}
+                        </>
+                    )}
                 </main>
             </section>
         </div>

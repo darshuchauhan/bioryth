@@ -228,9 +228,9 @@ const ProductDetailPage: React.FC = () => {
                             <div className="section-icon">{section.icon}</div>
                             <h2 className="section-title">{section.title}</h2>
                         </div>
-                        
-                        <div className="section-body">
-                            {section.id === 'faqs' ? (
+
+                        {section.id === 'faqs' ? (
+                            <div className="section-body section-body-static">
                                 <div className="faq-accordion">
                                     {parseFaqs(section.content!).map((faq, i) => (
                                         <div key={i} className={`faq-item ${openFaq === i ? 'open' : ''}`}>
@@ -250,10 +250,26 @@ const ProductDetailPage: React.FC = () => {
                                         </div>
                                     ))}
                                 </div>
-                            ) : (
-                                renderFormattedContent(section.content!, section.id === 'specification')
-                            )}
-                        </div>
+                            </div>
+                        ) : (
+                            <div className={`section-body ${index % 2 === 1 ? 'reverse' : ''}`}>
+                                <div className="section-text">
+                                    {renderFormattedContent(section.content!, section.id === 'specification')}
+                                </div>
+                                <div className="section-side-image">
+                                    {featuredImage ? (
+                                        <div className="image-panel">
+                                            <img src={featuredImage} alt={`${title.rendered} ${section.title}`} />
+                                        </div>
+                                    ) : (
+                                        <div className="section-placeholder">
+                                            <FileText size={48} />
+                                            <p>No image available</p>
+                                        </div>
+                                    )}
+                                </div>
+                            </div>
+                        )}
                         {index < sections.length - 1 && <div className="section-separator" />}
                     </section>
                 ))}

@@ -1838,8 +1838,10 @@ footer {
     margin-top: 0;
     padding-top: 0;
   }
-}
 
+.products-container {
+  padding-bottom: 10px;
+}
 .products-table th {
   text-align: left;
   padding: 1rem;

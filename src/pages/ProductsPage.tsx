@@ -40,6 +40,29 @@ const ProductsPage: React.FC = () => {
                     color: getColorByName(cat.name)
                 }));
 
+                // Sort categories: Healthy Aging + Longevity first, then Collagen, then others
+                mappedCats.sort((a, b) => {
+                    const aName = a.name.toLowerCase();
+                    const bName = b.name.toLowerCase();
+                    
+                    // Check for Healthy Aging or Longevity
+                    const aIsHealthyAging = aName.includes('healthy aging') || aName.includes('longevity');
+                    const bIsHealthyAging = bName.includes('healthy aging') || bName.includes('longevity');
+                    
+                    if (aIsHealthyAging && !bIsHealthyAging) return -1;
+                    if (!aIsHealthyAging && bIsHealthyAging) return 1;
+                    
+                    // If both are or neither are Healthy Aging, check for Collagen
+                    const aIsCollagen = aName.includes('collagen');
+                    const bIsCollagen = bName.includes('collagen');
+                    
+                    if (aIsCollagen && !bIsCollagen) return -1;
+                    if (!aIsCollagen && bIsCollagen) return 1;
+                    
+                    // Keep original order for others
+                    return 0;
+                });
+
                 setCategories(mappedCats);
 
                 const data = await fetchProducts();
@@ -120,7 +143,10 @@ const ProductsPage: React.FC = () => {
                                     <section
                                         key={section.category.id}
                                         className="category-section reveal"
-                                        style={{ animationDelay: `${sectionIndex * 0.08}s` }}
+                                        style={{ 
+                                            animationDelay: `${sectionIndex * 0.08}s`,
+                                            paddingBottom: sectionIndex === categorySections.length - 1 ? '12rem' : undefined
+                                        }}
                                     >
                                         <div className="category-header">
                                             <div>

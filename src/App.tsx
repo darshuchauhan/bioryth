@@ -34,7 +34,11 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (isMenuOpen) closeMenu();
+      // Only close menu on scroll if user has scrolled significantly (more than 100px)
+      // This prevents accidental menu closing when just tapping to open
+      if (isMenuOpen && window.scrollY > 100) {
+        closeMenu();
+      }
       const reveals = document.querySelectorAll('.reveal');
       const windowHeight = window.innerHeight;
       const revealPoint = 150;

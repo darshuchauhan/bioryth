@@ -4,9 +4,9 @@ import pharma from '../assets/pharmaceutical.jpg';
 
 import Counter from '../components/Counter';
 import ProductGrid from '../components/ProductGrid';
-import premiumIngredients from '../assets/Premium-grade ingredients.png';
-import quickDelivery from '../assets/quick-delivery.png';
-import documentSupport from '../assets/global-network.png';
+import premiumIngredients from '../assets/lab.jpg';
+import quickDelivery from '../assets/quick-delivery.jpg';
+import documentSupport from '../assets/document-support.jpg';
 
 const HomePage: React.FC = () => {
     return (
@@ -122,7 +122,7 @@ const HomePage: React.FC = () => {
                                 img: premiumIngredients
                             },
                             {
-                                title: "Global network & support",
+                                title: "Documentation Support",
                                 desc: "Efficient and dependable supply chain ensuring timely delivery across domestic and international markets without compromising quality.",
                                 img: documentSupport
                             },

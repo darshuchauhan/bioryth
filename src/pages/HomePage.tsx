@@ -4,8 +4,8 @@ import pharma from '../assets/global-map (1).png';
 
 import Counter from '../components/Counter';
 import ProductGrid from '../components/ProductGrid';
-import premiumIngredients from '../assets/premiumingredients.png';
-import quickDelivery from '../assets/quick-deliver.png';
+import premiumIngredients from '../assets/pgrade.jpg';
+import quickDelivery from '../assets/qdelivery.jpg';
 import documentSupport from '../assets/document-support.jpg';
 
 const HomePage: React.FC = () => {

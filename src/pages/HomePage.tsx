@@ -20,7 +20,7 @@ const HomePage: React.FC = () => {
                         loop
                         playsInline
                         poster="https://images.unsplash.com/photo-1579165466541-71e2247fb5c5?auto=format&fit=crop&q=80&w=2000"
-                        src="https://cdn.pixabay.com/video/2025/03/04/262464_large.mp4"
+                        src="https://blog.bioryth.com/wp-content/uploads/2026/04/FINAL-VIDEO.mp4"
                     >
                         Your browser does not support the video tag.
                     </video>

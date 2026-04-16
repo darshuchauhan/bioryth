@@ -381,7 +381,7 @@ header.sticky .mobile-menu-toggle {
   width: 80px;
   height: 80px;
   background: var(--bg-soft);
-  color: var(--primary);
+  color: #0B7EAC;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -391,7 +391,7 @@ header.sticky .mobile-menu-toggle {
 }
 
 .service-card:hover .service-icon {
-  background: var(--primary);
+  background: #0B7EAC;
   color: white;
   transform: rotateY(180deg);
 }
@@ -999,7 +999,7 @@ header.sticky .mobile-menu-toggle {
 .why-info h3 {
   font-size: 1.3rem;
   margin-bottom: 0.8rem;
-  color: var(--primary);
+  color: #0B7EAC;
 }
 
 .why-info p {

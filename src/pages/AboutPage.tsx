@@ -5,7 +5,7 @@ import Counter from '../components/Counter';
 import { fetchCategoryBySlug, fetchPostsByCategory } from '../services/wpService';
 import type { WPPost } from '../services/wpService';
 
-import raw_supply from '../assets/raw_material.jpg';
+import raw_supply from '../assets/raw-supply.webp';
 import science_lab from '../assets/sciencelab.jpg';
 
 const AboutPage: React.FC = () => {
@@ -57,7 +57,7 @@ const AboutPage: React.FC = () => {
                             </a>
                         </div>
                         <div className="about-image reveal">
-                            <img src={raw_supply} alt="Raw Material" />
+                            <img src={raw_supply} alt="Raw Material Supply"  />
                         </div>
                     </div>
                 </div>

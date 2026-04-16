@@ -1,10 +1,12 @@
 import React from 'react';
 import { Leaf, Globe, Users } from 'lucide-react';
 import pharma from '../assets/pharmaceutical.jpg';
-import documentSupport from '../assets/document-support.jpg';
-import quickDelivery from '../assets/quick-delivery.jpg';
+
 import Counter from '../components/Counter';
 import ProductGrid from '../components/ProductGrid';
+import premiumIngredients from '../assets/Premium-grade ingredients.png';
+import quickDelivery from '../assets/quick-delivery.png';
+import documentSupport from '../assets/global-network.png';
 
 const HomePage: React.FC = () => {
     return (
@@ -117,10 +119,10 @@ const HomePage: React.FC = () => {
                             {
                                 title: "Premium-grade Ingredients",
                                 desc: "Globally sourced, clinically backed nutraceutical and functional ingredients designed for superior performance, purity, and consistency.",
-                                img: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=800"
+                                img: premiumIngredients
                             },
                             {
-                                title: "Document Support",
+                                title: "Global network & support",
                                 desc: "Efficient and dependable supply chain ensuring timely delivery across domestic and international markets without compromising quality.",
                                 img: documentSupport
                             },

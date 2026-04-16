@@ -46,7 +46,7 @@ header.not-home .nav-links a.active {
 }
 
 header.not-home .brand-logo {
-  height: 85px;
+  height: 110px;
 }
 
 header.not-home .mobile-menu-toggle {
@@ -71,13 +71,13 @@ nav {
 }
 
 .brand-logo {
-  height: 120px;
+  height: 160px;
   transition: var(--transition);
   display: block;
 }
 
 header.sticky .brand-logo {
-  height: 95px;
+  height: 130px;
 }
 
 .nav-links {
@@ -688,8 +688,7 @@ header.sticky .mobile-menu-toggle {
 
 .about-image img {
   width: 100%;
-  aspect-ratio: 4/5;
-  object-fit: cover;
+  object-fit: contain;
   border-radius: 30px;
   box-shadow: 20px 20px 60px rgba(0, 0, 0, 0.1);
 }
@@ -1206,7 +1205,7 @@ footer {
 }
 
 .footer-logo img {
-  height: 180px;
+  height: 240px;
   margin-bottom: 1.5rem;
 }
 
@@ -1330,7 +1329,7 @@ footer {
   }
 
   .footer-logo img {
-    height: 140px;
+    height: 185px;
   }
 
   .footer-col h4 {
@@ -1523,7 +1522,7 @@ footer {
   }
 
   .brand-logo {
-    height: 90px;
+    height: 120px;
   }
 
   .nav-links {
@@ -1575,7 +1574,7 @@ footer {
   }
 
   .brand-logo {
-    height: 80px;
+    height: 105px;
   }
 
   .hero {

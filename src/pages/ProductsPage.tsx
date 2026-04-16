@@ -12,7 +12,7 @@ interface Category {
 // Color palette mapping to maintain premium design
 const getColorByName = (name: string): string => {
     const lowerName = name.toLowerCase();
-    if (lowerName.includes('longevity') || lowerName.includes('aging')) return '#8B5CF6'; // Purple
+    if (lowerName.includes('longevity') || lowerName.includes('aging')) return '#07344E'; // Navy
     if (lowerName.includes('collagen') || lowerName.includes('beauty')) return '#EC4899'; // Pink
     if (lowerName.includes('heart') || lowerName.includes('vitality')) return '#EF4444'; // Red
     if (lowerName.includes('cognitive') || lowerName.includes('brain')) return '#3B82F6'; // Blue
@@ -115,7 +115,7 @@ const ProductsPage: React.FC = () => {
                             </p>
                         </div>
                         <div className="grid-summary">
-                            <span className="product-count-pill" style={{ backgroundColor: '#8B5CF6' }}>
+                            <span className="product-count-pill" style={{ backgroundColor: '#07344E' }}>
                                 {loading ? 'Loading…' : `${totalProducts} Products`}
                             </span>
                         </div>

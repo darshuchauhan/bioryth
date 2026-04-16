@@ -276,7 +276,6 @@ header.sticky .mobile-menu-toggle {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  opacity: 0.6;
 }
 
 .hero-overlay {
@@ -1008,34 +1007,99 @@ header.sticky .mobile-menu-toggle {
 }
 
 /* Sourcing Section */
-.sourcing-grid {
+.global-network {
+  padding: 100px 0 90px;
+}
+
+.global-network .section-header {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.global-network .section-header p {
+  margin: 0 auto;
+  max-width: 700px;
+  color: var(--text-medium);
+}
+
+.network-map-card {
+  background: transparent;
+  border-radius: 0;
+  overflow: hidden;
+  box-shadow: none;
+  border: none;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.network-map-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.network-highlights {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 5rem;
-  align-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2.5rem;
 }
 
-.strength-card {
+.highlight-card {
   background: white;
-  padding: 3rem;
-  border-radius: 30px;
-  box-shadow: 20px 20px 60px rgba(0, 0, 0, 0.05);
-  border-left: 8px solid var(--secondary);
+  border-radius: 28px;
+  padding: 2rem;
+  box-shadow: 0 25px 65px rgba(7, 52, 78, 0.08);
+  border: 1px solid rgba(7, 52, 78, 0.08);
+  text-align: center;
 }
 
-.strength-card h3 {
-  font-size: 1.8rem;
+.highlight-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(7, 52, 78, 0.08);
+  color: var(--primary);
+}
+
+.highlight-card h3 {
+  font-size: 1.2rem;
   margin-bottom: 1rem;
   color: var(--primary);
 }
 
-.strength-card p {
-  font-size: 1.1rem;
+.highlight-card p {
   color: var(--text-medium);
+  line-height: 1.8;
+  margin: 0;
+}
+
+.sourcing-footer {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.sourcing-footer p {
+  display: inline-block;
+  margin: 0;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  background: var(--primary);
+  color: white;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.8rem;
 }
 
 @media (max-width: 968px) {
-  .sourcing-grid {
+  .network-highlights {
     grid-template-columns: 1fr;
   }
 }
@@ -1616,16 +1680,22 @@ footer {
   min-height: 100vh;
 }
 
+.products-container {
+  max-width: none;
+  padding: 0 1rem;
+}
+
 .page-header {
   background: white;
   border-bottom: 1px solid #e2e8f0;
   margin-bottom: 2rem;
   padding: 3rem 0;
+  text-align: center;
 }
 
 .products-layout {
   display: grid;
-  grid-template-columns: 320px 1fr;
+  grid-template-columns: 1fr 320px;
   gap: 2.5rem;
   padding-bottom: 100px;
 }
@@ -1734,7 +1804,7 @@ footer {
 .products-content {
   background: white;
   border-radius: 20px;
-  padding: 2rem;
+  padding: 1rem;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
   border: 1px solid #f1f5f9;
 }
@@ -1920,7 +1990,7 @@ footer {
 /* Grid View Styles */
 .products-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 2rem;
 }
 

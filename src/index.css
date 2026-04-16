@@ -1,9 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Outfit:wght@400;600;700&display=swap');
 
 :root {
-  --primary: #0B7EAC;
-  --primary-light: #005f73;
-  --primary-dark: #001219;
+  --primary: #07344E;
+  --primary-light: #2D5F7A;
+  --primary-dark: #041E2A;
   --secondary: #add036;
   --accent: #ee9b00;
   --text-dark: #001219;
@@ -22,8 +22,8 @@
   --radius-sm: 8px;
   --radius-md: 12px;
   --radius-lg: 30px;
-  --gradient-primary: linear-gradient(135deg, #003049 0%, #005f73 100%);
-  --gradient-premium: linear-gradient(135deg, #001219 0%, #003049 100%);
+  --gradient-primary: linear-gradient(135deg, #041E2A 0%, #07344E 100%);
+  --gradient-premium: linear-gradient(135deg, #001219 0%, #041E2A 100%);
   --gradient-accent: linear-gradient(135deg, #add036 0%, #10b981 100%);
 }
 

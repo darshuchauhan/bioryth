@@ -1,11 +1,11 @@
 import React from 'react';
-import { Leaf, Globe, Users } from 'lucide-react';
-import pharma from '../assets/pharmaceutical.jpg';
+import { Leaf, Globe, Users, Handshake } from 'lucide-react';
+import pharma from '../assets/global-map (1).png';
 
 import Counter from '../components/Counter';
 import ProductGrid from '../components/ProductGrid';
-import premiumIngredients from '../assets/lab.jpg';
-import quickDelivery from '../assets/quick-delivery.jpg';
+import premiumIngredients from '../assets/premiumingredients.png';
+import quickDelivery from '../assets/quick-deliver.png';
 import documentSupport from '../assets/document-support.jpg';
 
 const HomePage: React.FC = () => {
@@ -146,24 +146,45 @@ const HomePage: React.FC = () => {
                 </div>
             </section>
 
-            <section id="sourcing" className="sourcing section bg-soft">
+            <section id="global-network" className="global-network section bg-soft">
                 <div className="container">
-                    <div className="sourcing-grid">
-                        <div className="sourcing-text reveal">
-                            <span className="label">Our Global Network</span>
-                            <h2>Our Sourcing Strength</h2>
-                            <p>We leverage 12+ global sourcing countries to ensure a steady supply of innovative and high-purity ingredients from audited and certified production facilities.</p>
-                            <ul className="sourcing-list">
-                                <li><strong>Domestic Presence:</strong> Extensive network across India for regional distribution.</li>
-                                <li><strong>Global Imports:</strong> Strategic sourcing from Europe, USA, China, and Southeast Asia.</li>
-                                <li><strong>Direct Partnerships:</strong> Collaborative relationships with certified global manufacturers.</li>
-                            </ul>
-                            <a href="/contact" className="btn btn-primary mt-2">Partner With Us</a>
-                        </div>
-                        <div className="sourcing-image reveal">
-                            <img src={pharma} alt="Pharmaceutical sourcing" />
-                        </div>
+                    <div className="section-header reveal">
+                        <span className="label">Our Global Network</span>
+                        <h2>Our Sourcing Strength</h2>
+                        <p>We leverage 12+ global sourcing countries to ensure a steady supply of innovative and high-purity ingredients from audited and certified production facilities.</p>
                     </div>
+
+                    <div className="network-map-card reveal">
+                        <img src={pharma} alt="Global sourcing network" width={600} height={700} />
+                    </div>
+
+                    <div className="network-highlights reveal">
+                        {[
+                            {
+                                icon: <Users size={32} />,
+                                title: 'Domestic Presence',
+                                desc: 'Extensive network across India for regional distribution.'
+                            },
+                            {
+                                icon: <Globe size={32} />,
+                                title: 'Sourcing Network',
+                                desc: 'Strategic inbound sourcing from Europe, USA, China, and Southeast Asia.'
+                            },
+                            {
+                                icon: <Handshake size={32} />,
+                                title: 'Direct Partnerships',
+                                desc: 'Collaborative relationships with certified global manufacturers.'
+                            }
+                        ].map((item, idx) => (
+                            <div key={idx} className="highlight-card">
+                                <div className="highlight-icon">{item.icon}</div>
+                                <h3>{item.title}</h3>
+                                <p>{item.desc}</p>
+                            </div>
+                        ))}
+                    </div>
+
+                    
                 </div>
             </section>
 

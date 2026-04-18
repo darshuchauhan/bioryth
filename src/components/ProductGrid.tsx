@@ -42,7 +42,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({ title, limit = 4, excludeId }
             <div className="container">
                 {title && <h2 className="grid-title">{title}</h2>}
                 <div className="product-grid">
-                    {products.map((product, index) => {
+                    {products.map((product) => {
                         const featuredImage = product._embedded?.['wp:featuredmedia']?.[0]?.source_url;
                         return (
                             <Link 

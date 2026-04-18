@@ -40,7 +40,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({ title, limit = 4, excludeId }
     return (
         <section className="product-grid-section">
             <div className="container">
-                {title && <h2 className="grid-title reveal">{title}</h2>}
+                {title && <h2 className="grid-title">{title}</h2>}
                 <div className="product-grid">
                     {products.map((product, index) => {
                         const featuredImage = product._embedded?.['wp:featuredmedia']?.[0]?.source_url;
@@ -48,8 +48,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({ title, limit = 4, excludeId }
                             <Link 
                                 to={`/products/${product.slug}`} 
                                 key={product.id} 
-                                className="product-card reveal"
-                                style={{ animationDelay: `${index * 0.1}s` }}
+                                className="product-card"
                             >
                                 <div className="card-image">
                                     {featuredImage ? (

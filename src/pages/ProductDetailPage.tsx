@@ -211,6 +211,9 @@ const ProductDetailPage: React.FC = () => {
                             {acf?.short_description && (
                                 <p className="hero-short-desc">{acf.short_description}</p>
                             )}
+                            {product.content?.rendered && (
+                                <div className="hero-description" dangerouslySetInnerHTML={{ __html: product.content.rendered }} />
+                            )}
                             <div className="tags">
                                 <span className="tag">{title.rendered}</span>
                                 <span className="tag">Premium Quality</span>

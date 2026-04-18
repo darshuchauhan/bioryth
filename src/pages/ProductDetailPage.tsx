@@ -281,22 +281,17 @@ const ProductDetailPage: React.FC = () => {
                                 </div>
                             </div>
                         ) : (
-                            <div className={`section-body ${index % 2 === 1 ? 'reverse' : ''}`}>
+                            <div className={`section-body ${section.imageUrl ? (index % 2 === 1 ? 'reverse' : '') : 'full'}`}>
                                 <div className="section-text">
                                     {renderFormattedContent(section.cleanedContent, section.id === 'specification')}
                                 </div>
-                                <div className="section-side-image">
-                                    {section.imageUrl ? (
+                                {section.imageUrl && (
+                                    <div className="section-side-image">
                                         <div className="image-panel">
                                             <img src={section.imageUrl} alt={`${title.rendered} ${section.title}`} />
                                         </div>
-                                    ) : (
-                                        <div className="section-placeholder">
-                                            <FileText size={48} />
-                                            <p>No image available</p>
-                                        </div>
-                                    )}
-                                </div>
+                                    </div>
+                                )}
                             </div>
                         )}
                         {index < sections.length - 1 && <div className="section-separator" />}

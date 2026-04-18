@@ -219,6 +219,10 @@
     grid-template-columns: 0.8fr 1.2fr;
 }
 
+.section-body.full {
+    grid-template-columns: 1fr;
+}
+
 .section-body.reverse .section-text {
     order: 2;
 }

@@ -219,6 +219,14 @@
     grid-template-columns: 0.8fr 1.2fr;
 }
 
+.section-body.reverse .section-text {
+    order: 2;
+}
+
+.section-body.reverse .section-side-image {
+    order: 1;
+}
+
 .section-body-static {
     grid-template-columns: 1fr;
 }

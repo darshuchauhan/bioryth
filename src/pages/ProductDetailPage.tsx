@@ -46,8 +46,22 @@ const ProductDetailPage: React.FC = () => {
 
     const extractImageFromContent = (html: string) => {
         if (!html) return null;
-        const imgMatch = html.match(/<img[^>]+src="([^"]+)"/);
+        const imgMatch = html.match(/<img[^>]+src="([^"]+)"/i);
         return imgMatch ? imgMatch[1] : null;
+    };
+
+    const removeFirstImageFromContent = (html: string) => {
+        if (!html) return html;
+
+        let cleaned = html.replace(/\[caption[^\]]*\](.*?)\[\/caption\]/gis, (_, content) => {
+            const imgMatch = content.match(/<img[^>]*>/i);
+            if (!imgMatch) return content;
+            const captionText = content.replace(imgMatch[0], '').trim();
+            return captionText || '';
+        });
+
+        cleaned = cleaned.replace(/<img[^>]*>/i, '');
+        return cleaned;
     };
 
     const sections = [
@@ -60,7 +74,16 @@ const ProductDetailPage: React.FC = () => {
         { id: 'applications', title: 'Applications', content: acf?.applications, icon: <Layers size={24} /> },
         { id: 'packaging', title: 'Packaging', content: acf?.packaging, icon: <Package size={24} /> },
         { id: 'faqs', title: 'FAQs', content: acf?.faqs, icon: <HelpCircle size={24} /> },
-    ].filter(s => s.content).map(s => ({ ...s, imageUrl: extractImageFromContent(s.content!) }));
+    ]
+        .filter(s => s.content)
+        .map(s => {
+            const imageUrl = extractImageFromContent(s.content!);
+            return {
+                ...s,
+                imageUrl,
+                cleanedContent: imageUrl ? removeFirstImageFromContent(s.content!) : s.content!,
+            };
+        });
 
     const processWPContent = (html: string) => {
         if (!html) return '';
@@ -189,7 +212,7 @@ const ProductDetailPage: React.FC = () => {
                                 <p className="hero-short-desc">{acf.short_description}</p>
                             )}
                             <div className="tags">
-                                <span className="tag">Uthever®</span>
+                                <span className="tag">{title.rendered}</span>
                                 <span className="tag">Premium Quality</span>
                                 <span className="tag">Certified</span>
                             </div>
@@ -260,7 +283,7 @@ const ProductDetailPage: React.FC = () => {
                         ) : (
                             <div className={`section-body ${index % 2 === 1 ? 'reverse' : ''}`}>
                                 <div className="section-text">
-                                    {renderFormattedContent(section.content!, section.id === 'specification')}
+                                    {renderFormattedContent(section.cleanedContent, section.id === 'specification')}
                                 </div>
                                 <div className="section-side-image">
                                     {section.imageUrl ? (

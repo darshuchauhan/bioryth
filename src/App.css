@@ -2036,8 +2036,9 @@ footer {
 }
 
 .products-container {
-  max-width: none;
-  padding: 0 1rem;
+  width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
 }
 
 .page-header {
@@ -2159,7 +2160,7 @@ footer {
 .products-content {
   background: white;
   border-radius: 20px;
-  padding: 1rem;
+  padding: 2rem;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
   border: 1px solid #f1f5f9;
 }
@@ -2346,7 +2347,7 @@ footer {
 .products-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 2rem;
+  gap: 2.5rem;
 }
 
 .product-card {
@@ -2465,7 +2466,7 @@ footer {
   }
 
   .products-content {
-    padding: 1.5rem;
+    padding: 2.5rem;
   }
 
   .category-tabs-inner {
@@ -2532,7 +2533,7 @@ footer {
   }
 
   .products-content {
-    padding: 1.25rem;
+    padding: 2rem;
   }
 
   .products-table th:nth-child(3),

@@ -98,15 +98,15 @@ const ProductsPage: React.FC = () => {
         <div className="products-page">
             <section className="page-header section-padding">
                 <div className="container">
-                    <h1 className="reveal">Our Ingredients</h1>
-                    <p className="reveal" style={{ animationDelay: '0.2s' }}>
+                    <h1>Our Ingredients</h1>
+                    <p style={{ animationDelay: '0.2s' }}>
                         A comprehensive catalog of high-performance nutraceutical ingredients.
                     </p>
                 </div>
             </section>
 
             <section className="products-container container">
-                <main className="products-content reveal" style={{ animationDelay: '0.4s' }}>
+                <main className="products-content" style={{ animationDelay: '0.4s' }}>
                     <div className="product-grid-header">
                         <div>
                             <h2 className="category-title">Explore by Category</h2>
@@ -142,7 +142,7 @@ const ProductsPage: React.FC = () => {
                                 categorySections.map((section, sectionIndex) => (
                                     <section
                                         key={section.category.id}
-                                        className="category-section reveal"
+                                        className="category-section"
                                         style={{ 
                                             animationDelay: `${sectionIndex * 0.08}s`,
                                             paddingBottom: sectionIndex === categorySections.length - 1 ? '12rem' : undefined

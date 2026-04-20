@@ -153,11 +153,7 @@ const ProductsPage: React.FC = () => {
                                                 <h2 style={{ color: section.category.color }}>
                                                     {section.category.name}
                                                 </h2>
-                                                <p className="category-subtitle">
-                                                    {section.products.length > 0
-                                                        ? `${section.products.length} premium product${section.products.length > 1 ? 's' : ''} in this category.`
-                                                        : 'No products available in this category yet.'}
-                                                </p>
+                                                
                                             </div>
                                             <span className="product-count">{section.products.length} items</span>
                                         </div>

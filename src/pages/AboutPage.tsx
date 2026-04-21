@@ -33,15 +33,15 @@ const AboutPage: React.FC = () => {
         <div className="about-page">
             <section className="page-hero bg-primary">
                 <div className="container">
-                    <h1 className="reveal">About Bioryth Enterprise</h1>
-                    <p className="reveal">India's Leading Nutraceutical and Functional Premium Ingredients Supplier.</p>
+                    <h1>About Bioryth Enterprise</h1>
+                    <p>India's Leading Nutraceutical and Functional Premium Ingredients Supplier.</p>
                 </div>
             </section>
 
             <section className="about-content section">
                 <div className="container">
                     <div className="about-grid">
-                        <div className="about-text reveal">
+                        <div className="about-text">
                             <h2>Excellence in Raw Material Supply</h2>
                             <p>
                                 Bioryth Enterprise proudly serves the nutraceutical and functional food industries by supplying high-quality raw materials essential for product formulation and large-scale manufacturing.
@@ -56,7 +56,7 @@ const AboutPage: React.FC = () => {
                                 <span>Inquiry via WhatsApp</span>
                             </a>
                         </div>
-                        <div className="about-image reveal">
+                        <div className="about-image">
                             <img src={raw_supply} alt="Raw Material Supply"  />
                         </div>
                     </div>
@@ -65,7 +65,7 @@ const AboutPage: React.FC = () => {
 
             <section className="about-stats-section bg-soft section">
                 <div className="container">
-                    <div className="stats-grid reveal">
+                    <div className="stats-grid">
                         <div className="stat-card">
                             <div className="stat-icon"><Users size={32} /></div>
                             <div className="stat-info">
@@ -94,23 +94,23 @@ const AboutPage: React.FC = () => {
             {/* Science Story Section */}
             <section id="science-story" className="science-story section">
                 <div className="container">
-                    <div className="section-header reveal">
+                    <div className="section-header">
                         <span className="label">Science Story</span>
                         <h2>The Science of Nutrition</h2>
                         <p>Research-backed ingredient functionality and innovation.</p>
                     </div>
                     <div className="science-grid">
-                        <div className="science-card reveal">
+                        <div className="science-card">
                             <div className="sci-icon"><Microscope size={40} /></div>
                             <h3>Research-backed ingredients</h3>
                             <p>Every ingredient is selected based on documented safety and clinical efficacy.</p>
                         </div>
-                        <div className="science-card reveal">
+                        <div className="science-card">
                             <div className="sci-icon"><Beaker size={40} /></div>
                             <h3>Science-driven formulation</h3>
                             <p>We assist in creating stabilized, biologically active formulations.</p>
                         </div>
-                        <div className="science-card reveal">
+                        <div className="science-card">
                             <div className="sci-icon"><Leaf size={40} /></div>
                             <h3>Nature-inspired performance</h3>
                             <p>Maximizing the innate potential of natural ingredients through advanced technologies.</p>
@@ -122,7 +122,7 @@ const AboutPage: React.FC = () => {
             {/* Science Stories & Innovation (Dynamic) */}
             <section className="science-story-section section bg-soft">
                 <div className="container">
-                    <div className="section-header reveal text-center">
+                    <div className="section-header text-center">
                         <span className="label">Innovation</span>
                         <h2>Science Stories & Innovation</h2>
                         <p>Discover the research and origins behind our premium ingredients.</p>
@@ -136,7 +136,7 @@ const AboutPage: React.FC = () => {
                     ) : (
                         <div className="science-posts-grid">
                             {posts.length > 0 ? posts.map((post) => (
-                                <div key={post.id} className="science-post-card reveal">
+                                <div key={post.id} className="science-post-card">
                                     <div className="post-image">
                                         <img
                                             src={post._embedded?.['wp:featuredmedia']?.[0]?.source_url || science_lab}
@@ -164,20 +164,20 @@ const AboutPage: React.FC = () => {
             {/* Industry News & Update Section */}
             <section id="industry-news" className="industry-news section">
                 <div className="container">
-                    <div className="section-header reveal">
+                    <div className="section-header">
                         <span className="label">Insights</span>
                         <h2>Industry News & Updates</h2>
                         <p>Stay informed with the latest market shifts and scientific innovations.</p>
                     </div>
                     <div className="news-blog-grid">
-                        <div className="news-card reveal">
+                        <div className="news-card">
                             <div className="news-body">
                                 <h3>Market Trends</h3>
                                 <p>Regulatory changes and market trends affecting the nutraceutical industry.</p>
                                 <Link to="/news" className="btn-text">Explore Updates</Link>
                             </div>
                         </div>
-                        <div className="news-card reveal">
+                        <div className="news-card">
                             <div className="news-body">
                                 <h3>Scientific Breakthroughs</h3>
                                 <p>Latest breakthroughs in ingredient extraction and functional development.</p>
@@ -191,13 +191,13 @@ const AboutPage: React.FC = () => {
             {/* Reach Out / Corporate Office Section */}
             <section className="corporate-office section bg-soft">
                 <div className="container">
-                    <div className="section-header reveal">
+                    <div className="section-header">
                         <span className="label">Get In Touch</span>
                         <h2>Contact Us & Corporate Office</h2>
                         <p>Partner with us for your premium ingredient needs.</p>
                     </div>
                     <div className="contact-grid">
-                        <div className="contact-form-container reveal">
+                        <div className="contact-form-container">
                             <form className="contact-form" onSubmit={(e) => { e.preventDefault(); alert('Inquiry sent!'); }}>
                                 <div className="form-group">
                                     <input type="text" placeholder="Full Name" required />
@@ -211,7 +211,7 @@ const AboutPage: React.FC = () => {
                                 <button type="submit" className="btn btn-primary">Send Inquiry</button>
                             </form>
                         </div>
-                        <div className="reveal">
+                        <div>
                             <div className="info-block">
                                 <h3 className="inline-flex items-center gap-2"><MapPin size={20} className="text-secondary" /> Corporate Office</h3>
                                 <p>4th Floor, OZ House, GhodDod Rd,</p>

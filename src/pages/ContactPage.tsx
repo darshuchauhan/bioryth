@@ -6,7 +6,7 @@ const ContactPage: React.FC = () => {
         <div className="contact-page">
             <section className="page-hero bg-primary">
                 <div className="container">
-                    <h1 className="reveal">Get In Touch</h1>
+                    <h1>Get In Touch</h1>
                     <p>Partner with India’s leading nutraceutical ingredient supplier for premium solutions.</p>
                 </div>
             </section>
@@ -14,7 +14,7 @@ const ContactPage: React.FC = () => {
             <section className="contact-details-section section">
                 <div className="container">
                     <div className="contact-grid">
-                        <div className="contact-form-container reveal">
+                        <div className="contact-form-container">
                             <div className="form-tabs">
                                 <h2>Inquiry Form</h2>
                             </div>
@@ -35,7 +35,7 @@ const ContactPage: React.FC = () => {
                             </form>
                         </div>
 
-                        <div className="contact-info-container reveal">
+                        <div className="contact-info-container">
                             <div className="info-block">
                                 <h3>Corporate Office</h3>
                                 <p>4th Floor, OZ House, GhodDod Rd,</p>
@@ -52,7 +52,7 @@ const ContactPage: React.FC = () => {
                                 <p>info@bioryth.com</p>
                             </div>
 
-                            <div className="newsletter-box reveal">
+                            <div className="newsletter-box">
                                 <h3>Newsletter</h3>
                                 <p>Subscribe for market updates and new arrivals.</p>
                                 <form className="newsletter-form" onSubmit={(e) => { e.preventDefault(); alert('Subscribed!'); }}>

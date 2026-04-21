@@ -201,11 +201,11 @@ const ProductDetailPage: React.FC = () => {
             <div className="detail-hero">
                 <div className="hero-bg-accent"></div>
                 <div className="container">
-                    <Link to="/products" className="back-link reveal">
+                    <Link to="/products" className="back-link">
                         <ArrowLeft size={18} /> Back to Ingredients
                     </Link>
                     <div className="hero-grid">
-                        <div className="hero-content reveal">
+                        <div className="hero-content">
                             <div className="hero-badge">Nutraceutical Grade</div>
                             <h1>{title.rendered}</h1>
                             {acf?.short_description && (
@@ -226,7 +226,7 @@ const ProductDetailPage: React.FC = () => {
                                 </a>
                             </div>
                         </div>
-                        <div className="hero-image reveal" style={{ animationDelay: '0.2s' }}>
+                        <div className="hero-image" style={{ animationDelay: '0.2s' }}>
                             <div className="image-card">
                                 {featuredImage ? (
                                     <img src={featuredImage} alt={title.rendered} />
@@ -255,7 +255,7 @@ const ProductDetailPage: React.FC = () => {
 
             <div className="detail-sections container">
                 {sections.map((section, index) => (
-                    <section id={section.id} key={section.id} className="detail-section reveal">
+                    <section id={section.id} key={section.id} className="detail-section">
                         <div className="section-header-compact">
                             <div className="section-icon">{section.icon}</div>
                             <h2 className="section-title">{section.title}</h2>
@@ -314,7 +314,7 @@ const ProductDetailPage: React.FC = () => {
 
             <section className="inquiry-footer section-padding-lg">
                 <div className="container">
-                    <div className="footer-glass-card reveal">
+                    <div className="footer-glass-card">
                         <div className="footer-content">
                             <h2>Elevate Your Product with {title.rendered}</h2>
                             <p>Connect with our technical team today for samples, documentation, and expert guidance.</p>

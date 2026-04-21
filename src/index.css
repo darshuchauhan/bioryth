@@ -80,16 +80,6 @@ ul {
 }
 
 /* Utilities */
-.reveal {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-}
-
-.reveal.active {
-  opacity: 1;
-  transform: translateY(0);
-}
 
 .gradient-text {
   background: linear-gradient(90deg, var(--primary), var(--secondary));

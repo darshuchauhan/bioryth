@@ -87,9 +87,9 @@ const BlogDetailPage: React.FC = () => {
             }}>
                 <div className="hero-overlay"></div>
                 <div className="container">
-                    <Link to="/news" className="back-link reveal"><ChevronLeft size={20} /> Back to News</Link>
-                    <h1 className="reveal" dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
-                    <div className="post-meta reveal">
+                    <Link to="/news" className="back-link"><ChevronLeft size={20} /> Back to News</Link>
+                    <h1 dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
+                    <div className="post-meta">
                         <Calendar size={16} /> {new Date(post.date).toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' })}
                     </div>
                 </div>
@@ -98,7 +98,7 @@ const BlogDetailPage: React.FC = () => {
             <article className="post-content section">
                 <div className="container-small">
                     {processed.toc.length > 0 && (
-                        <div className="toc-container reveal">
+                        <div className="toc-container">
                             <div className="toc-header">
                                 <List size={20} />
                                 <h3>Table of Contents</h3>

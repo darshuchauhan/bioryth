@@ -27,8 +27,8 @@ const NewsPage: React.FC = () => {
         <div className="news-page">
             <section className="page-hero bg-primary">
                 <div className="container">
-                    <h1 className="reveal">Industry News & Updates</h1>
-                    <p className="reveal">Latest market shifts, research updates, and ingredient launches from our blog.</p>
+                    <h1>Industry News & Updates</h1>
+                    <p>Latest market shifts, research updates, and ingredient launches from our blog.</p>
                 </div>
             </section>
 
@@ -42,7 +42,7 @@ const NewsPage: React.FC = () => {
                     ) : (
                         <div className="news-blog-grid">
                             {posts.map((post) => (
-                                <article key={post.id} className="news-card reveal">
+                                <article key={post.id} className="news-card">
                                     <div className="news-img">
                                         <img
                                             src={post._embedded?.['wp:featuredmedia']?.[0]?.source_url || 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&q=80&w=800'}

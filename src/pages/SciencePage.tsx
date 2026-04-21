@@ -32,31 +32,31 @@ const SciencePage: React.FC = () => {
         <div className="science-page">
             <section className="page-hero bg-primary">
                 <div className="container">
-                    <h1 className="reveal">The Science of Nutrition</h1>
-                    <p className="reveal">Research-backed ingredient functionality and innovation.</p>
+                    <h1>The Science of Nutrition</h1>
+                    <p>Research-backed ingredient functionality and innovation.</p>
                 </div>
             </section>
 
             <section className="science-content section">
                 <div className="container">
-                    <div className="section-header reveal">
+                    <div className="section-header">
                         <span className="label">Our Approach</span>
                         <h2>Ingredient Science & Innovation</h2>
                         <p>We bridge the gap between nature and nutrition through rigorous evidence-based science.</p>
                     </div>
 
                     <div className="science-grid">
-                        <div className="science-card reveal">
+                        <div className="science-card">
                             <div className="sci-icon"><Microscope size={40} /></div>
                             <h3>Research-backed ingredients</h3>
                             <p>Every ingredient is selected based on documented safety and clinical efficacy, ensuring high performance in every formulation.</p>
                         </div>
-                        <div className="science-card reveal">
+                        <div className="science-card">
                             <div className="sci-icon"><Beaker size={40} /></div>
                             <h3>Science-driven formulation</h3>
                             <p>Our experts assist in creating stabilized, biologically active formulations that set your product apart in the market.</p>
                         </div>
-                        <div className="science-card reveal">
+                        <div className="science-card">
                             <div className="sci-icon"><Leaf size={40} /></div>
                             <h3>Nature-inspired performance</h3>
                             <p>We maximize the innate potential of natural ingredients through advanced extraction and optimization technologies.</p>
@@ -74,7 +74,7 @@ const SciencePage: React.FC = () => {
                         </div>
                     ) : (
                         <>
-                            <div className="section-header reveal text-center">
+                            <div className="section-header text-center">
                                 <h2>Science Stories & Innovation</h2>
                                 <p>Discover the research and origins behind our premium ingredients.</p>
                             </div>
@@ -82,7 +82,7 @@ const SciencePage: React.FC = () => {
                             {posts.length > 0 ? (
                                 <div className="science-posts-grid">
                                     {posts.map((post) => (
-                                        <div key={post.id} className="science-post-card reveal">
+                                        <div key={post.id} className="science-post-card">
                                             <div className="post-image">
                                                 <img
                                                     src={post._embedded?.['wp:featuredmedia']?.[0]?.source_url || science}
@@ -112,13 +112,13 @@ const SciencePage: React.FC = () => {
                                 </div>
                             ) : (
                                 <div className="about-grid">
-                                    <div className="about-text reveal">
+                                    <div className="about-text">
                                         <span className="label">The Journey</span>
                                         <h2>Ingredient Origins & Innovation</h2>
                                         <p>From ethical sourcing in diverse global regions to advanced extraction processes, we ensure every ingredient tells a story of quality and transparency.</p>
                                         <p>Our innovation team works tirelessly to discover new health impacts, ensuring Bioryth remains at the forefront of the nutraceutical industry.</p>
                                     </div>
-                                    <div className="about-image reveal">
+                                    <div className="about-image">
                                         <img src={science} alt="Science Lab" className="rounded-img" />
                                     </div>
                                 </div>

@@ -39,16 +39,6 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       if (isMenuOpen && window.scrollY > 100) {
         closeMenu();
       }
-      const reveals = document.querySelectorAll('.reveal');
-      const windowHeight = window.innerHeight;
-      const revealPoint = 150;
-
-      reveals.forEach((reveal) => {
-        const revealTop = reveal.getBoundingClientRect().top;
-        if (revealTop < windowHeight - revealPoint) {
-          reveal.classList.add('active');
-        }
-      });
 
       const header = document.querySelector('header');
       if (header) {
@@ -61,17 +51,11 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     };
 
     window.addEventListener('scroll', handleScroll);
-    // Trigger scroll check on mount and whenever pathname changes
-    // Add a small timeout to ensure elements are rendered before check
-    const timeout = setTimeout(() => {
-      handleScroll();
-    }, 100);
 
     return () => {
       window.removeEventListener('scroll', handleScroll);
-      clearTimeout(timeout);
     };
-  }, [isMenuOpen, location.pathname]);
+  }, [isMenuOpen]);
 
   return (
     <div className={`app-wrapper ${isMenuOpen ? 'menu-open' : ''}`}>

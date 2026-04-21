@@ -253,11 +253,20 @@ header.sticky .mobile-menu-toggle {
     background: linear-gradient(180deg, rgba(0, 18, 25, 0.7) 0%, rgba(0, 48, 73, 0.9) 100%);
   }
 }
+.hero-badge {
+  color:#fff;
+}
 
 .hero-content {
   position: relative;
   z-index: 2;
   max-width: 900px;
+}
+.hero-content h1 {
+  font-size: 5rem;
+  margin-bottom: 2rem;
+  line-height: 1.1;
+  color: #ffffff !important;
 }
 
 @media (max-width: 768px) {
@@ -351,7 +360,7 @@ header.sticky .mobile-menu-toggle {
   box-shadow: 0 15px 30px rgba(37, 211, 102, 0.3);
 }
 
-.hero-badge.reveal {
+.hero-badge {
   display: inline-block;
   padding: 0.5rem 1.5rem;
   background: rgba(255, 255, 255, 0.1);
@@ -363,7 +372,7 @@ header.sticky .mobile-menu-toggle {
   letter-spacing: 2px;
   font-size: 0.85rem;
   margin-bottom: 2rem;
-  color: #ffffff !important;
+  color: #fff !important;
 }
 
 @media (max-width: 768px) {
@@ -2638,4 +2647,73 @@ footer {
     grid-template-columns: 1fr;
     gap: 2rem;
   }
+}
+header.sticky {
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  height: 80px;
+  box-shadow: var(--shadow-md);
+  border-bottom: 1px solid var(--glass-border);
+}
+
+header.not-home {
+  background: white;
+  border-bottom: 1px solid var(--glass-border);
+  height: 80px;
+}
+
+header.not-home .nav-links a {
+  color: var(--text-dark);
+}
+
+header.not-home .nav-links a::after {
+  background-color: var(--primary);
+}
+
+header.not-home .nav-links a:hover {
+  color: var(--primary);
+}
+
+header.not-home .nav-links a:hover::after {
+  width: 100%;
+}
+
+header.not-home .nav-links a.active {
+  color: var(--primary);
+}
+
+header.not-home .brand-logo {
+  height: 110px;
+}
+
+header.not-home .mobile-menu-toggle {
+  color: var(--text-dark);
+}
+
+header.not-home .connect-btn {
+  border-color: var(--primary);
+  color: var(--primary) !important;
+}
+
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.logo-group {
+  display: flex;
+  align-items: center;
+}
+
+.brand-logo {
+  height: 160px;
+  transition: var(--transition);
+  display: block;
+}
+
+header.sticky .brand-logo {
+  height: 130px;
 }

@@ -14,6 +14,54 @@ header.sticky .brand-logo {
   height: 130px;
 }
 
+/* Mobile responsive logo */
+@media (max-width: 968px) {
+  header {
+    height: 70px;
+  }
+
+  .brand-logo {
+    height: 60px !important;
+    width: auto;
+    max-width: 140px;
+    object-fit: contain;
+  }
+
+  header.sticky .brand-logo {
+    height: 55px;
+  }
+}
+
+@media (max-width: 768px) {
+  header {
+    height: 65px;
+  }
+
+  .brand-logo {
+    height: 48px !important;
+    max-width: 120px;
+  }
+
+  header.sticky .brand-logo {
+    height: 48px;
+  }
+}
+
+@media (max-width: 480px) {
+  header {
+    height: 60px;
+  }
+
+  .brand-logo {
+    height: 42px !important;
+    max-width: 110px;
+  }
+
+  header.sticky .brand-logo {
+    height: 42px;
+  }
+}
+
 .nav-links {
   display: flex;
   align-items: center;
@@ -262,12 +310,7 @@ header.sticky .mobile-menu-toggle {
   z-index: 2;
   max-width: 900px;
 }
-.hero-content h1 {
-  font-size: 5rem;
-  margin-bottom: 2rem;
-  line-height: 1.1;
-  color: #ffffff !important;
-}
+
 
 @media (max-width: 768px) {
   .hero-content {
@@ -372,9 +415,11 @@ header.sticky .mobile-menu-toggle {
   letter-spacing: 2px;
   font-size: 0.85rem;
   margin-bottom: 2rem;
+  color: #285A75 !important;
+}
+.hero-txt{
   color: #fff !important;
 }
-
 @media (max-width: 768px) {
   .hero-badge.reveal {
     font-size: 0.75rem;

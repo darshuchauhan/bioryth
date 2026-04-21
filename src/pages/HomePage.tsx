@@ -27,8 +27,8 @@ const HomePage: React.FC = () => {
                 </div>
                 <div className="hero-overlay"></div>
                 <div className="container hero-content">
-                    <div className="hero-badge">India's Premier Nutraceutical Ingredient Partner</div>
-                    <h1>
+                    
+                    <h1 style={{ color: 'white' }} className='hero-txt'>
                         India's Premier <br /><span className="gradient-text">Nutraceutical Ingredient</span> Partner
                     </h1>
                     <p>

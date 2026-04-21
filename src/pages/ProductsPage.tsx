@@ -80,11 +80,15 @@ const ProductsPage: React.FC = () => {
     const searchQuery = searchTerm.trim().toLowerCase();
 
     const categorySections = categories.map((category) => {
-        const products = allProducts.filter((product) => {
-            const hasCategory = product.categories?.includes(parseInt(category.id, 10));
-            const matchesSearch = searchQuery === '' || product.title.rendered.toLowerCase().includes(searchQuery);
-            return hasCategory && matchesSearch;
-        });
+        const products = allProducts
+            .filter((product) => {
+                const hasCategory = product.categories?.includes(parseInt(category.id, 10));
+                const matchesSearch = searchQuery === '' || product.title.rendered.toLowerCase().includes(searchQuery);
+                return hasCategory && matchesSearch;
+            })
+            .sort((a, b) =>
+                a.title.rendered.localeCompare(b.title.rendered, undefined, { sensitivity: 'base' })
+            );
 
         return {
             category,

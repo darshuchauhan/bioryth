@@ -221,7 +221,7 @@ const ProductDetailPage: React.FC = () => {
                             </div>
                             <div className="cta-group">
                                 <Link to="/contact" className="btn btn-primary">Request Specification</Link>
-                                <a href="https://wa.me/919104133333" className="btn btn-whatsapp">
+                                <a href="https://wa.me/919909117959" className="btn btn-whatsapp">
                                     <MessageCircle size={18} /> WhatsApp Inquiry
                                 </a>
                             </div>
@@ -322,7 +322,7 @@ const ProductDetailPage: React.FC = () => {
                                 <Link to="/contact" className="btn btn-primary btn-lg">
                                     <Mail size={18} /> Send Inquiry
                                 </Link>
-                                <a href="https://wa.me/+919909117959" className="btn btn-glass btn-lg">
+                                <a href="https://wa.me/919909117959" className="btn btn-glass btn-lg">
                                     <MessageCircle size={18} /> Chat on WhatsApp
                                 </a>
                             </div>

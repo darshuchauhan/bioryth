@@ -5,6 +5,12 @@ import { fetchCategoryBySlug, fetchPostsByCategory } from '../services/wpService
 import type { WPPost } from '../services/wpService';
 import science from '../assets/sciencelab.jpg';
 
+const decodeHtmlEntity = (html: string) => {
+    const element = document.createElement('textarea');
+    element.innerHTML = html;
+    return element.value;
+};
+
 const SciencePage: React.FC = () => {
     const [posts, setPosts] = useState<WPPost[]>([]);
     const [loading, setLoading] = useState(true);
@@ -25,8 +31,6 @@ const SciencePage: React.FC = () => {
         };
         getSciencePosts();
     }, []);
-
-
 
     return (
         <div className="science-page">
@@ -90,7 +94,7 @@ const SciencePage: React.FC = () => {
                                                 />
                                                 {post._embedded?.['wp:term']?.[0]?.[0] && (
                                                     <span className="news-tag" style={{ position: 'absolute', top: '15px', right: '15px' }}>
-                                                        {post._embedded['wp:term'][0][0].name}
+                                                        {decodeHtmlEntity(post._embedded['wp:term'][0][0].name)}
                                                     </span>
                                                 )}
                                             </div>

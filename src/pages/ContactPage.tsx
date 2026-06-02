@@ -1,7 +1,45 @@
-import React from 'react';
+import React, { type FormEvent, useState } from 'react';
 import { ChevronRight } from 'lucide-react';
 
 const ContactPage: React.FC = () => {
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        phone: '',
+        message: '',
+    });
+    const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+    const [errorMessage, setErrorMessage] = useState('');
+
+    const handleChange = (field: keyof typeof formData) => (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        setFormData((prev) => ({ ...prev, [field]: event.target.value }));
+    };
+
+    const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        setStatus('sending');
+        setErrorMessage('');
+
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(formData),
+            });
+
+            if (!response.ok) {
+                const text = await response.text();
+                throw new Error(text || 'Failed to send inquiry.');
+            }
+
+            setFormData({ name: '', email: '', phone: '', message: '' });
+            setStatus('success');
+        } catch (error) {
+            setStatus('error');
+            setErrorMessage(error instanceof Error ? error.message : 'Failed to send inquiry.');
+        }
+    };
+
     return (
         <div className="contact-page">
             <section className="page-hero bg-primary">
@@ -18,21 +56,26 @@ const ContactPage: React.FC = () => {
                             <div className="form-tabs">
                                 <h2>Inquiry Form</h2>
                             </div>
-                            <form className="contact-form" onSubmit={(e) => { e.preventDefault(); alert('Inquiry sent!'); }}>
+                            <form className="contact-form" onSubmit={handleSubmit}>
                                 <div className="form-group">
-                                    <input type="text" placeholder="Full Name" required />
+                                    <input type="text" placeholder="Full Name" value={formData.name} onChange={handleChange('name')} required />
                                 </div>
                                 <div className="form-group">
-                                    <input type="email" placeholder="Email Address" required />
+                                    <input type="email" placeholder="Email Address" value={formData.email} onChange={handleChange('email')} required />
                                 </div>
                                 <div className="form-group">
-                                    <input type="tel" placeholder="Phone Number" />
+                                    <input type="tel" placeholder="Phone Number" value={formData.phone} onChange={handleChange('phone')} />
                                 </div>
                                 <div className="form-group">
-                                    <textarea placeholder="Tell us about your requirement..." rows={6} required></textarea>
+                                    <textarea placeholder="Tell us about your requirement..." rows={6} value={formData.message} onChange={handleChange('message')} required />
                                 </div>
-                                <button type="submit" className="btn btn-primary">Send Inquiry</button>
+                                <button type="submit" className="btn btn-primary" disabled={status === 'sending'}>
+                                    {status === 'sending' ? 'Sending...' : 'Send Inquiry'}
+                                </button>
                             </form>
+
+                            {status === 'success' && <p className="form-success">Your inquiry has been sent to info@bioryth.com.</p>}
+                            {status === 'error' && <p className="form-error">{errorMessage}</p>}
                         </div>
 
                         <div className="contact-info-container">

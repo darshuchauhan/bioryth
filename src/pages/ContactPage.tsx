@@ -2,6 +2,7 @@ import React, { type FormEvent, useState } from 'react';
 import { ChevronRight } from 'lucide-react';
 
 const ContactPage: React.FC = () => {
+    const API_BASE = (import.meta.env.VITE_API_BASE as string) || '';
     const [formData, setFormData] = useState({
         name: '',
         email: '',
@@ -21,7 +22,7 @@ const ContactPage: React.FC = () => {
         setErrorMessage('');
 
         try {
-            const response = await fetch('/api/contact', {
+            const response = await fetch(`${API_BASE}/api/contact`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(formData),

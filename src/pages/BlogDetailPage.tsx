@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useMemo } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useLocation } from 'react-router-dom';
 import { Calendar, ChevronLeft, Loader2, List } from 'lucide-react';
 import { fetchPostsBySlug } from '../services/wpService';
 import type { WPPost } from '../services/wpService';
@@ -12,6 +12,11 @@ interface TOCItem {
 
 const BlogDetailPage: React.FC = () => {
     const { slug } = useParams<{ slug: string }>();
+    const location = useLocation();
+    const isBlog = location.pathname.startsWith('/blog');
+    const backPath = isBlog ? '/blog' : '/news';
+    const backLabel = isBlog ? 'Back to Blog' : 'Back to News';
+    const allLabel = isBlog ? 'View All Blog Posts' : 'View All Posts';
     const [post, setPost] = useState<WPPost | null>(null);
     const [loading, setLoading] = useState(true);
 
@@ -75,7 +80,7 @@ const BlogDetailPage: React.FC = () => {
         return (
             <div className="error-full container">
                 <h2>Post not found</h2>
-                <Link to="/news" className="btn btn-primary">Back to News</Link>
+                <Link to={backPath} className="btn btn-primary">{backLabel}</Link>
             </div>
         );
     }
@@ -87,7 +92,7 @@ const BlogDetailPage: React.FC = () => {
             }}>
                 <div className="hero-overlay"></div>
                 <div className="container">
-                    <Link to="/news" className="back-link"><ChevronLeft size={20} /> Back to News</Link>
+                    <Link to={backPath} className="back-link"><ChevronLeft size={20} /> {backLabel}</Link>
                     <h1 dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
                     <div className="post-meta">
                         <Calendar size={16} /> {new Date(post.date).toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' })}
@@ -123,7 +128,7 @@ const BlogDetailPage: React.FC = () => {
                                 {/* Sharing logic could be added here */}
                             </div>
                         </div>
-                        <Link to="/news" className="btn btn-secondary mt-2">View All Posts</Link>
+                        <Link to={backPath} className="btn btn-secondary mt-2">{allLabel}</Link>
                     </div>
                 </div>
             </article>

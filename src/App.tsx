@@ -138,7 +138,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
 import SciencePage from './pages/SciencePage';
 import NewsPage from './pages/NewsPage';
-
+import BlogPage from './pages/BlogPage';
 import BlogDetailPage from './pages/BlogDetailPage';
 import ProductDetailPage from './pages/ProductDetailPage';
 
@@ -155,6 +155,8 @@ const App: React.FC = () => {
           <Route path="/science" element={<SciencePage />} />
           <Route path="/news" element={<NewsPage />} />
           <Route path="/news/:slug" element={<BlogDetailPage />} />
+          <Route path="/blog" element={<BlogPage />} />
+          <Route path="/blog/:slug" element={<BlogDetailPage />} />
           <Route path="/products/:slug" element={<ProductDetailPage />} />
         </Routes>
       </Layout>

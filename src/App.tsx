@@ -5,6 +5,7 @@ import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
 import ProductsPage from './pages/ProductsPage';
 import './App.css';
+import BannerPopup from './components/BannerPopup';
 
 const ScrollToTop = () => {
   const { pathname } = useLocation();
@@ -84,6 +85,8 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
       {children}
 
+      <BannerPopup />
+
       <a href="https://wa.me/919909117959" className="whatsapp-float" target="_blank" rel="noopener noreferrer">
         <MessageCircle size={30} />
       </a>
@@ -107,7 +110,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
                 <li><Link to="/about">About Us</Link></li>
                 <li><Link to="/products">Product List</Link></li>
                 <li><Link to="/science">Science Story</Link></li>
-                <li><Link to="/news">Blog</Link></li>
+                <li><Link to="/blog">Blog</Link></li>
                 <li><Link to="/news">Industry News</Link></li>
                 <li><Link to="/contact">Contact Us</Link></li>
               </ul>

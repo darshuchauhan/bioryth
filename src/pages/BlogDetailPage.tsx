@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useMemo } from 'react';
 import { useParams, Link, useLocation } from 'react-router-dom';
-import { Calendar, ChevronLeft, Loader2, List } from 'lucide-react';
+import { Calendar, ChevronLeft, Loader2 } from 'lucide-react';
 import { fetchPostsBySlug } from '../services/wpService';
 import type { WPPost } from '../services/wpService';
 
@@ -31,46 +31,31 @@ const BlogDetailPage: React.FC = () => {
         getPost();
     }, [slug]);
 
-    // Process content to add IDs to headings and extract TOC items
     const processed = useMemo(() => {
         if (!post) return { content: '', toc: [] as TOCItem[] };
-
         const toc: TOCItem[] = [];
-        let content = post.content.rendered;
-
-        // Simple regex to find h2 and h3
+        const content = post.content.rendered;
         const headingRegex = /<h([23])(.*?)>(.*?)<\/h\1>/gi;
-        let modifiedContent = content;
-
-        // Reset regex state
         headingRegex.lastIndex = 0;
-
         const matches = [...content.matchAll(headingRegex)];
-
         matches.forEach((match, index) => {
             const level = parseInt(match[1]);
-            const rawText = match[3].replace(/<[^>]*>?/gm, ''); // Strip tags from text
+            const rawText = match[3].replace(/<[^>]*>?/gm, '');
             const id = `heading-${index}`;
-
             toc.push({ id, text: rawText, level });
-
-            // We don't replace here yet because indices would shift
         });
-
-        // Now replace in content to add IDs
         let idCounter = 0;
-        modifiedContent = content.replace(/<h([23])(.*?)>(.*?)<\/h\1>/gi, (_match, level, attrs, text) => {
+        const modifiedContent = content.replace(/<h([23])(.*?)>(.*?)<\/h\1>/gi, (_match, level, attrs, text) => {
             const id = `heading-${idCounter++}`;
             return `<h${level} id="${id}" ${attrs}>${text}</h${level}>`;
         });
-
         return { content: modifiedContent, toc };
     }, [post]);
 
     if (loading) {
         return (
-            <div className="loading-full">
-                <Loader2 className="animate-spin" size={48} />
+            <div className="bdp-loading">
+                <Loader2 className="bdp-spinner" size={48} />
                 <p>Loading post details...</p>
             </div>
         );
@@ -78,60 +63,74 @@ const BlogDetailPage: React.FC = () => {
 
     if (!post) {
         return (
-            <div className="error-full container">
-                <h2>Post not found</h2>
-                <Link to={backPath} className="btn btn-primary">{backLabel}</Link>
+            <div className="bdp-error">
+                <h1>Post not found</h1>
+                <p>We couldn't find the blog post you're looking for.</p>
+                <Link to={backPath} className="bdp-btn-back">{backLabel}</Link>
             </div>
         );
     }
 
+    const featuredImg = post._embedded?.['wp:featuredmedia']?.[0]?.source_url
+        || 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&q=80&w=1200';
+    const categoryName = post._embedded?.['wp:term']?.[0]?.[0]?.name;
+    const plainTitle = post.title.rendered.replace(/<[^>]*>?/gm, '');
+
     return (
-        <div className="blog-detail-page">
-            <section className="detail-hero" style={{
-                backgroundImage: `url(${post._embedded?.['wp:featuredmedia']?.[0]?.source_url || 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?auto=format&fit=crop&q=80&w=1200'})`
-            }}>
-                <div className="hero-overlay"></div>
-                <div className="container">
-                    <Link to={backPath} className="back-link"><ChevronLeft size={20} /> {backLabel}</Link>
-                    <h1 dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
-                    <div className="post-meta">
-                        <Calendar size={16} /> {new Date(post.date).toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' })}
+        <div className="bdp-wrapper">
+
+            {/* ── Post Header ── */}
+            <section className="bdp-header">
+                <div className="bdp-header__inner">
+                    <Link to={backPath} className="bdp-back-link">
+                        <ChevronLeft size={18} />
+                        <span>{backLabel}</span>
+                    </Link>
+                    <h1 className="bdp-title" dangerouslySetInnerHTML={{ __html: post.title.rendered }} />
+                    <div className="bdp-meta">
+                        <span className="bdp-date-pill">
+                            <Calendar size={14} />
+                            {new Date(post.date).toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' })}
+                        </span>
+                        {categoryName && (
+                            <span className="bdp-category-tag">{categoryName}</span>
+                        )}
                     </div>
                 </div>
             </section>
 
-            <article className="post-content section">
-                <div className="container-small">
-                    {processed.toc.length > 0 && (
-                        <div className="toc-container">
-                            <div className="toc-header">
-                                <List size={20} />
-                                <h3>Table of Contents</h3>
-                            </div>
-                            <ul className="toc-list">
-                                {processed.toc.map((item) => (
-                                    <li key={item.id} className={`toc-level-${item.level}`}>
-                                        <a href={`#${item.id}`}>{item.text}</a>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    )}
+            {/* ── Content Area ── */}
+            <div className="bdp-content-wrap">
 
-                    <div className="generic-content-render reveal" dangerouslySetInnerHTML={{ __html: processed.content }} />
-
-                    <div className="post-footer reveal">
-                        <hr />
-                        <div className="share-box">
-                            <p>Enjoyed this article? Share it with your network.</p>
-                            <div className="social-links">
-                                {/* Sharing logic could be added here */}
-                            </div>
-                        </div>
-                        <Link to={backPath} className="btn btn-secondary mt-2">{allLabel}</Link>
-                    </div>
+                {/* Featured Image */}
+                <div className="bdp-featured-wrap">
+                    <img
+                        src={featuredImg}
+                        alt={plainTitle}
+                        className="bdp-featured-img"
+                    />
                 </div>
-            </article>
+
+                {/* Article Wrapper (Centered layout) */}
+                <div className="bdp-grid bdp-grid--notoc">
+                    <article className="bdp-article">
+                        {/* Body Content (WordPress HTML) */}
+                        <div
+                            className="bdp-body"
+                            dangerouslySetInnerHTML={{ __html: processed.content }}
+                        />
+
+                        {/* Footer Card */}
+                        <div className="bdp-footer-card">
+                            <div className="bdp-footer-card__text">
+                                <h3>Share this article</h3>
+                                <p>Spread the knowledge with your professional network.</p>
+                            </div>
+                            <Link to={backPath} className="bdp-footer-card__btn">{allLabel}</Link>
+                        </div>
+                    </article>
+                </div>
+            </div>
         </div>
     );
 };

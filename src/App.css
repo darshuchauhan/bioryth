@@ -698,115 +698,8 @@ header.sticky .mobile-menu-toggle {
   gap: 0.8rem;
 }
 
-/* Blog Detail Page */
-.blog-detail-page .detail-hero {
-  height: 60vh;
-  min-height: 400px;
-  background-size: cover;
-  background-position: center;
-  position: relative;
-  display: flex;
-  align-items: center;
-  color: white;
-  padding-top: 100px;
-}
-
-.blog-detail-page .detail-hero h1 {
-  font-size: 3.5rem;
-  font-weight: 800;
-  line-height: 1.2;
-  margin-bottom: 1.5rem;
-  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
-  max-width: 1000px;
-}
-
-.blog-detail-page .detail-hero .post-meta {
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-  font-weight: 600;
-  font-size: 1.1rem;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.detail-hero .container {
-  position: relative;
-  z-index: 2;
-}
-
-.back-link:hover {
-  opacity: 1;
-}
-
-.blog-detail-page h1 {
-  font-size: 3.5rem;
-  margin-bottom: 1rem;
-  line-height: 1.2;
-}
-
-.post-meta {
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-  font-weight: 600;
-  color: var(--secondary);
-}
-
-.container-small {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 0 2rem;
-}
-
-/* content-inner is deprecated in favor of generic-content-render */
-
-/* Table of Contents */
-.toc-container {
-  background: var(--bg-soft);
-  padding: 2rem;
-  border-radius: 20px;
-  margin-bottom: 3rem;
-  border-left: 4px solid var(--primary);
-}
-
-.toc-header {
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-  margin-bottom: 1.5rem;
-  color: var(--primary);
-}
-
-.toc-header h3 {
-  margin: 0;
-  font-size: 1.25rem;
-}
-
-.toc-list {
-  list-style: none;
-  padding: 0;
-}
-
-.toc-list li {
-  margin-bottom: 0.8rem;
-}
-
-.toc-list a {
-  color: var(--text-medium);
-  text-decoration: none;
-  font-weight: 500;
-  transition: var(--transition);
-}
-
-.toc-list a:hover {
-  color: var(--primary);
-  padding-left: 5px;
-}
-
-.toc-level-3 {
-  padding-left: 1.5rem;
-  font-size: 0.95rem;
-}
+/* Blog Detail Page — now styled entirely via Tailwind CSS */
+/* All .blog-detail-page CSS removed to prevent conflicts with Tailwind utilities */
 
 .generic-content-render img {
   max-width: 100%;
@@ -2851,4 +2744,6 @@ header.sticky .brand-logo {
     height: 32px;
   }
 }
+
+/* Blog Detail Page responsive styles removed — handled by Tailwind responsive prefixes */
 

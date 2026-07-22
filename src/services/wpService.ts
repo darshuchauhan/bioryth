@@ -47,11 +47,16 @@ export interface WPCategory {
 
 export const fetchCategories = async (): Promise<WPCategory[]> => {
     try {
-        // Fetch categories but exclude News (1) and Science (3)
-        const response = await fetch(`${WP_API_URL}/categories?per_page=100&exclude=1,3`);
+        // Fetch categories but exclude News (1), Science (3), and Blog (17)
+        const response = await fetch(`${WP_API_URL}/categories?per_page=100&exclude=1,3,17`);
         if (response.ok) {
             const data = await response.json();
-            if (Array.isArray(data)) return data;
+            if (Array.isArray(data)) {
+                return data.filter(cat => 
+                    !['blog', 'blogs', 'news', 'science'].includes(cat.slug.toLowerCase()) &&
+                    !['blog', 'news', 'science'].includes(cat.name.trim().toLowerCase())
+                );
+            }
         }
         return [];
     } catch (error) {
@@ -77,12 +82,14 @@ export const fetchPosts = async (excludeCategories: number[] = []): Promise<WPPo
 
 export const fetchProducts = async (): Promise<WPPost[]> => {
     try {
-        // Exclude News (1) and Science (3) to return only Products
-        const response = await fetch(`${WP_API_URL}/posts?_embed&per_page=100&categories_exclude=1,3`);
+        // Exclude News (1), Science (3), and Blog (17) to return only Products
+        const response = await fetch(`${WP_API_URL}/posts?_embed&per_page=100&categories_exclude=1,3,17`);
         
         if (response.ok) {
             const data = await response.json();
-            if (Array.isArray(data)) return data;
+            if (Array.isArray(data)) {
+                return data.filter(post => !post.categories?.some(catId => [1, 3, 17].includes(catId)));
+            }
         }
 
         console.warn('Failed to fetch products from /posts endpoint');

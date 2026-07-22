@@ -34,7 +34,11 @@ const ProductsPage: React.FC = () => {
             setLoading(true);
             try {
                 const wpCats = await fetchCategories();
-                const mappedCats: Category[] = wpCats.map(cat => ({
+                const filteredWPCats = wpCats.filter(cat => 
+                    !['blog', 'blogs', 'news', 'science'].includes(cat.slug.toLowerCase()) &&
+                    !['blog', 'news', 'science'].includes(cat.name.trim().toLowerCase())
+                );
+                const mappedCats: Category[] = filteredWPCats.map(cat => ({
                     id: cat.id.toString(),
                     name: cat.name.toUpperCase(),
                     color: getColorByName(cat.name)
@@ -66,7 +70,10 @@ const ProductsPage: React.FC = () => {
                 setCategories(mappedCats);
 
                 const data = await fetchProducts();
-                setAllProducts(data);
+                const filteredProducts = data.filter(product => 
+                    !product.categories?.some(catId => [1, 3, 17].includes(catId))
+                );
+                setAllProducts(filteredProducts);
             } catch (error) {
                 console.error('Error loading data:', error);
             } finally {

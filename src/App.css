@@ -8,6 +8,9 @@ header {
   top: 0;
   z-index: 1000;
   transition: var(--transition);
+  background: #ffffff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid var(--glass-border);
 }
 
 header.sticky .brand-logo {
@@ -69,7 +72,7 @@ header.sticky .brand-logo {
 }
 
 .nav-links a {
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--text-dark);
   font-weight: 600;
   font-size: 0.95rem;
   transition: var(--transition);
@@ -83,12 +86,12 @@ header.sticky .brand-logo {
   left: 0;
   width: 0;
   height: 2px;
-  background-color: var(--secondary);
+  background-color: var(--primary);
   transition: width 0.3s ease;
 }
 
 .nav-links a:hover {
-  color: var(--secondary);
+  color: var(--primary);
 }
 
 .nav-links a:hover::after {
@@ -137,7 +140,7 @@ header.sticky .nav-links a.active {
   display: none;
   background: none;
   border: none;
-  color: inherit;
+  color: var(--text-dark);
   cursor: pointer;
   z-index: 2000;
   padding: 0.5rem;
@@ -2587,7 +2590,7 @@ footer {
   }
 }
 header.sticky {
-  background: var(--glass);
+  background: #ffffff;
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   height: 80px;

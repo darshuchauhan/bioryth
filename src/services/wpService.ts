@@ -88,7 +88,7 @@ export const fetchProducts = async (): Promise<WPPost[]> => {
         if (response.ok) {
             const data = await response.json();
             if (Array.isArray(data)) {
-                return data.filter(post => !post.categories?.some(catId => [1, 3, 17].includes(catId)));
+                return data.filter((post: WPPost) => !post.categories?.some((catId: number) => [1, 3, 17].includes(catId)));
             }
         }
 

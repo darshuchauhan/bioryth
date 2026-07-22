@@ -77,6 +77,7 @@ const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
             <li><Link to="/about" onClick={closeMenu} className={location.pathname === '/about' ? 'active' : ''}>About Us</Link></li>
             <li><Link to="/products" onClick={closeMenu} className={location.pathname === '/products' ? 'active' : ''}>Product List</Link></li>
             <li><Link to="/science" onClick={closeMenu} className={location.pathname === '/science' ? 'active' : ''}>Science Story</Link></li>
+            <li><Link to="/blog" onClick={closeMenu} className={location.pathname.startsWith('/blog') ? 'active' : ''}>Blog</Link></li>
             <li><Link to="/news" onClick={closeMenu} className={location.pathname.startsWith('/news') ? 'active' : ''}>Industry News</Link></li>
             <li><Link to="/contact" onClick={closeMenu} className={location.pathname === '/contact' ? 'active' : ''}>Contact Us</Link></li>
           </ul>
